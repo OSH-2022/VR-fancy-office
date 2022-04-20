@@ -60,7 +60,7 @@ Oculus里面的Interaction SDK Experimental 是一个模块化、可组合的组
 
 其使用场景大致如下，其中我们可以看到左上角的Hierarchy模块，它是设计游戏界面的主要场所，下方的Project则是之前从Unity asset store中下载下来的integration sdk，右侧的Inspector就是对于当前模块以及脚本的一些阐述。在Oculus Project里面已经有许多提供给开发者使用的模块以及脚本，就比如说下图中的OVRCameraRig，其中有左右手的一些动作模拟，我们此时可以从Prefab文件夹中找寻到对应的脚本，然后将其放置于对应的子模块下面后调解好参数，点击display键就可以有初步的动画效果。
 
-![image-20220420082646780](C:\Users\20526\AppData\Roaming\Typora\typora-user-images\image-20220420082646780.png)
+![image-20220420082646780](./img/1.png)
 
 ### Oculus Integration的重要文件夹功能说明
 
@@ -75,7 +75,7 @@ Oculus里面的Interaction SDK Experimental 是一个模块化、可组合的组
 - 可以实现在抓取过程中某些关节上的手指自由。
 - 所有物品都允许在双手之间转移。
 
-![image-20220420091047430](C:\Users\20526\AppData\Roaming\Typora\typora-user-images\image-20220420091047430.png)
+![image-20220420091047430](./img/2.png)
 
 注：上图为basic grab的测试过程图以及初始场景图。
 
@@ -109,7 +109,7 @@ Oculus里面的Interaction SDK Experimental 是一个模块化、可组合的组
 - 在姿势开始时触发粒子效果。
 - 在姿势结束时隐藏粒子效果。
 
-![image-20220420092356011](C:\Users\20526\AppData\Roaming\Typora\typora-user-images\image-20220420092356011.png)
+![image-20220420092356011](./img/3.png)
 
 注：上图即为其对于竖大拇指的识别。
 
