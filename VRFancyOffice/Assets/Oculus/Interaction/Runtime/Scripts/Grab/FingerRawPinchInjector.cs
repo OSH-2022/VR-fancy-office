@@ -22,6 +22,7 @@ namespace Oculus.Interaction.GrabAPI
         protected virtual void Awake()
         {
             _handGrabAPI.InjectOptionalFingerPinchAPI(new FingerRawPinchAPI());
+            _handGrabAPI.InjectOptionalFingerGrabAPI(new FingerRawPinchAPI());
         }
     }
 }

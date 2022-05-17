@@ -33,7 +33,7 @@ namespace Oculus.Interaction.Throw
 
         public bool GetRootPose(out Pose pose)
         {
-            pose = new Pose();
+            pose = Pose.identity;
             if (!IsInputValid)
             {
                 return false;

@@ -14,6 +14,5 @@ using UnityEngine;
 
 namespace Oculus.Interaction.Samples
 {
-    // Place on the same GameObject as the VolumeInteractable
     public class ShouldHideHandOnGrab : MonoBehaviour {}
 }

@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingEnabled: 1
+  connectionRequired: 1
+  showUntracked: 0
   keyboardQueryFlags: 2
   presentation: 0
   PassthroughBorderMultiplier: 0.2

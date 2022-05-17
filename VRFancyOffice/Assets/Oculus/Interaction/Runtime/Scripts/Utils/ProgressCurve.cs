@@ -84,7 +84,7 @@ namespace Oculus.Interaction
 
         public float ProgressTime()
         {
-            return Mathf.Min(Mathf.Max(0f, Time.realtimeSinceStartup - _animationStartTime), _animationLength);
+            return Mathf.Clamp(Time.realtimeSinceStartup - _animationStartTime, 0f, _animationLength);
         }
 
         public void End()

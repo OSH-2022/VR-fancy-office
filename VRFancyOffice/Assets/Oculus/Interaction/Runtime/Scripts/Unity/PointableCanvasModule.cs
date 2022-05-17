@@ -84,14 +84,14 @@ namespace Oculus.Interaction
         {
             Action<PointerArgs> pointerCanvasAction = (args) => HandlePointerEvent(pointerCanvas.Canvas, args);
             _pointerCanvasActionMap.Add(pointerCanvas, pointerCanvasAction);
-            pointerCanvas.OnPointerEvent += pointerCanvasAction;
+            pointerCanvas.WhenPointerEventRaised += pointerCanvasAction;
         }
 
         private void RemovePointerCanvas(IPointableCanvas pointerCanvas)
         {
             Action<PointerArgs> pointerCanvasAction = _pointerCanvasActionMap[pointerCanvas];
             _pointerCanvasActionMap.Remove(pointerCanvas);
-            pointerCanvas.OnPointerEvent -= pointerCanvasAction;
+            pointerCanvas.WhenPointerEventRaised -= pointerCanvasAction;
 
             List<int> pointerIDs = new List<int>(_pointerMap.Keys);
             foreach (int pointerID in pointerIDs)
@@ -101,6 +101,7 @@ namespace Oculus.Interaction
                 {
                     continue;
                 }
+                ClearPointerSelection(pointer.PointerEventData);
                 pointer.MarkForDeletion();
                 _pointersForDeletion.Add(pointer);
                 _pointerMap.Remove(pointerID);
@@ -116,7 +117,7 @@ namespace Oculus.Interaction
                 case PointerEvent.Hover:
                     pointer = new Pointer(canvas);
                     pointer.PointerEventData = new PointerEventData(eventSystem);
-                    pointer.SetPosition(args.Position);
+                    pointer.SetPosition(args.Pose.position);
                     _pointerMap.Add(args.Identifier, pointer);
                     break;
                 case PointerEvent.Unhover:
@@ -127,17 +128,24 @@ namespace Oculus.Interaction
                     break;
                 case PointerEvent.Select:
                     pointer = _pointerMap[args.Identifier];
-                    pointer.SetPosition(args.Position);
+                    pointer.SetPosition(args.Pose.position);
                     pointer.Press();
                     break;
                 case PointerEvent.Unselect:
                     pointer = _pointerMap[args.Identifier];
-                    pointer.SetPosition(args.Position);
+                    pointer.SetPosition(args.Pose.position);
                     pointer.Release();
                     break;
                 case PointerEvent.Move:
                     pointer = _pointerMap[args.Identifier];
-                    pointer.SetPosition(args.Position);
+                    pointer.SetPosition(args.Pose.position);
+                    break;
+                case PointerEvent.Cancel:
+                    pointer = _pointerMap[args.Identifier];
+                    _pointerMap.Remove(args.Identifier);
+                    ClearPointerSelection(pointer.PointerEventData);
+                    pointer.MarkForDeletion();
+                    _pointersForDeletion.Add(pointer);
                     break;
             }
         }
@@ -529,17 +537,22 @@ namespace Oculus.Interaction
                 // And clear selection!
                 if (pointerEvent.pointerPress != pointerEvent.pointerDrag)
                 {
-                    ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent,
-                        ExecuteEvents.pointerUpHandler);
-
-                    pointerEvent.eligibleForClick = false;
-                    pointerEvent.pointerPress = null;
-                    pointerEvent.rawPointerPress = null;
+                    ClearPointerSelection(pointerEvent);
                 }
 
                 ExecuteEvents.Execute(pointerEvent.pointerDrag, pointerEvent,
                     ExecuteEvents.dragHandler);
             }
+        }
+
+        private void ClearPointerSelection(PointerEventData pointerEvent)
+        {
+            ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent,
+                ExecuteEvents.pointerUpHandler);
+
+            pointerEvent.eligibleForClick = false;
+            pointerEvent.pointerPress = null;
+            pointerEvent.rawPointerPress = null;
         }
 
         /// <summary>

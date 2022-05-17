@@ -13,13 +13,13 @@ permissions and limitations under the License.
 using Oculus.Interaction.Input;
 using UnityEngine;
 
-namespace Oculus.Interaction.GrabAPI
+namespace Oculus.Interaction
 {
     public interface IFingerAPI
     {
         bool GetFingerIsGrabbing(HandFinger finger);
         bool GetFingerIsGrabbingChanged(HandFinger finger, bool targetPinchState);
-        float GetFingerGrabStrength(HandFinger finger);
+        float GetFingerGrabScore(HandFinger finger);
         Vector3 GetCenterOffset();
         void Update(IHand hand);
     }

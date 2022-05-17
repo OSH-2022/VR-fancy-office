@@ -340,10 +340,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxInteractors: -1
   _maxSelectingInteractors: -1
+  _pointableElement: {fileID: 0}
   _proximityField: {fileID: 6553429281188994657}
   _surface: {fileID: 4625356660798671994}
   _maxDistance: 0.01
-  _enterHoverDistance: 0
+  _enterHoverDistance: 0.01
   _releaseDistance: 0.1
   _horizontalDragThreshold: 0.1
   _verticalDragThreshold: 0.1

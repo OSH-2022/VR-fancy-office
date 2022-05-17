@@ -14,11 +14,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Oculus.Interaction.Throw;
-using UnityEngine.Serialization;
 
 namespace Oculus.Interaction
 {
-    public class GrabInteractor : Interactor<GrabInteractor, GrabInteractable>, IRigidbodyRef
+    public class GrabInteractor : PointerInteractor<GrabInteractor, GrabInteractable>, IRigidbodyRef
     {
         [SerializeField, Interface(typeof(ISelector))]
         private MonoBehaviour _selector;
@@ -52,6 +51,7 @@ namespace Oculus.Interaction
 
         protected override void Start()
         {
+            this.BeginStart(ref _started, base.Start);
             Assert.IsNotNull(Selector);
             Assert.IsNotNull(Rigidbody);
 
@@ -80,6 +80,8 @@ namespace Oculus.Interaction
             }
 
             _tween = new Tween(Pose.identity);
+
+            this.EndStart(ref _started);
         }
 
         protected override void DoEveryUpdate()
@@ -91,7 +93,7 @@ namespace Oculus.Interaction
         protected override GrabInteractable ComputeCandidate()
         {
             GrabInteractable closestInteractable = null;
-            float bestScore = float.MinValue;
+            float bestScore = float.NegativeInfinity;
             float score = bestScore;
 
             IEnumerable<GrabInteractable> interactables = GrabInteractable.Registry.List(this);
@@ -128,47 +130,17 @@ namespace Oculus.Interaction
 
         protected override void InteractableSelected(GrabInteractable interactable)
         {
-            base.InteractableSelected(interactable);
             Pose target = _grabTarget.GetPose();
             Pose source = _interactable.GetGrabSourceForTarget(target);
-            interactable.Grabbable.AddGrabPoint(Identifier, source);
+
             _tween.StopAndSetPose(source);
-            _tween.TweenTo(target);
-            interactable.Grabbable.WhenGrabbableUpdated += HandleGrabbableUpdated;
-        }
+            base.InteractableSelected(interactable);
 
-        private void HandleGrabbableUpdated(GrabbableArgs args)
-        {
-            if (SelectedInteractable == null)
-            {
-                return;
-            }
-
-            if (args.GrabbableEvent == GrabbableEvent.Update)
-            {
-                return;
-            }
-
-            Pose target = _grabTarget.GetPose();
-            if (SelectedInteractable.ResetGrabOnGrabsUpdated)
-            {
-                Pose source = _interactable.GetGrabSourceForTarget(target);
-                SelectedInteractable.Grabbable.ResetGrabPoint(Identifier, source);
-                _tween = new Tween(source);
-                _tween.TweenTo(target);
-            }
-            else
-            {
-                SelectedInteractable.Grabbable.ResetGrabPoint(Identifier, target);
-                _tween = new Tween(target);
-                _tween.TweenTo(target);
-            }
+            _tween.MoveTo(target);
         }
 
         protected override void InteractableUnselected(GrabInteractable interactable)
         {
-            interactable.Grabbable.WhenGrabbableUpdated -= HandleGrabbableUpdated;
-            interactable.Grabbable.RemoveGrabPoint(Identifier, _tween.Pose);
             base.InteractableUnselected(interactable);
 
             ReleaseVelocityInformation throwVelocity = VelocityCalculator != null ?
@@ -177,16 +149,57 @@ namespace Oculus.Interaction
             interactable.ApplyVelocities(throwVelocity.LinearVelocity, throwVelocity.AngularVelocity);
         }
 
-        protected override void DoSelectUpdate(GrabInteractable interactable)
+        protected override void HandlePointerEventRaised(PointerArgs args)
         {
-            if (interactable == null)
+            base.HandlePointerEventRaised(args);
+
+            if (SelectedInteractable == null)
+            {
+                return;
+            }
+
+            if (args.PointerEvent == PointerEvent.Select ||
+                args.PointerEvent == PointerEvent.Unselect ||
+                args.PointerEvent == PointerEvent.Cancel)
+            {
+                Pose target = _grabTarget.GetPose();
+                if (SelectedInteractable.ResetGrabOnGrabsUpdated)
+                {
+                    Pose source = _interactable.GetGrabSourceForTarget(target);
+                    _tween.StopAndSetPose(source);
+                    SelectedInteractable.PointableElement.ProcessPointerEvent(
+                        new PointerArgs(Identifier, PointerEvent.Move, _tween.Pose));
+                    _tween.MoveTo(target);
+                }
+                else
+                {
+                    _tween.StopAndSetPose(target);
+                    SelectedInteractable.PointableElement.ProcessPointerEvent(
+                        new PointerArgs(Identifier, PointerEvent.Move, target));
+                    _tween.MoveTo(target);
+                }
+            }
+        }
+
+        protected override Pose ComputePointerPose()
+        {
+            if (SelectedInteractable != null)
+            {
+                return _tween.Pose;
+            }
+            return _grabTarget.GetPose();
+        }
+
+        protected override void DoSelectUpdate()
+        {
+            GrabInteractable interactable = _selectedInteractable;
+            if(interactable == null)
             {
                 return;
             }
 
             _tween.UpdateTarget(_grabTarget.GetPose());
             _tween.Tick();
-            interactable.Grabbable.UpdateGrabPoint(Identifier, _tween.Pose);
 
             if (interactable.ReleaseDistance > 0.0f)
             {

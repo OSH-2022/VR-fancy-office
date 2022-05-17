@@ -96,7 +96,7 @@ namespace Oculus.Interaction
         {
             if (_started)
             {
-                Pointable.OnPointerEvent += HandlePointerEvent;
+                Pointable.WhenPointerEventRaised += HandlePointerEventRaised;
                 UpdateMaterialColor();
             }
         }
@@ -105,7 +105,7 @@ namespace Oculus.Interaction
         {
             if (_started)
             {
-                Pointable.OnPointerEvent -= HandlePointerEvent;
+                Pointable.WhenPointerEventRaised -= HandlePointerEventRaised;
             }
         }
 
@@ -114,7 +114,7 @@ namespace Oculus.Interaction
             Destroy(_material);
         }
 
-        private void HandlePointerEvent(PointerArgs args)
+        private void HandlePointerEventRaised(PointerArgs args)
         {
             switch (args.PointerEvent)
             {

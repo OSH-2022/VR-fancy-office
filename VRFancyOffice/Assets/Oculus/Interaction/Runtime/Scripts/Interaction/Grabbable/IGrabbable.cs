@@ -18,8 +18,6 @@ namespace Oculus.Interaction
 {
     public interface IGrabbable
     {
-        event Action<GrabbableArgs> WhenGrabbableUpdated;
-
         List<Pose> GrabPoints { get; }
 
         Transform Transform { get; }

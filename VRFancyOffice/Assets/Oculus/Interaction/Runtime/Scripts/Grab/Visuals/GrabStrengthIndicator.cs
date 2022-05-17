@@ -19,9 +19,9 @@ namespace Oculus.Interaction
 {
     public class GrabStrengthIndicator : MonoBehaviour
     {
-        [SerializeField, Interface(typeof(IHandGrabInteractor), typeof(IInteractor))]
+        [SerializeField, Interface(typeof(IHandGrabber), typeof(IInteractor))]
         private MonoBehaviour _handGrabInteractor;
-        private IHandGrabInteractor HandGrab { get; set; }
+        private IHandGrabber HandGrab { get; set; }
         private IInteractor Interactor { get; set; }
 
         [SerializeField]
@@ -105,7 +105,7 @@ namespace Oculus.Interaction
 
         private void Awake()
         {
-            HandGrab = _handGrabInteractor as IHandGrabInteractor;
+            HandGrab = _handGrabInteractor as IHandGrabber;
             Interactor = _handGrabInteractor as IInteractor;
         }
 
@@ -193,7 +193,7 @@ namespace Oculus.Interaction
 
         #region Inject
 
-        public void InjectAllGrabStrengthIndicator(IHandGrabInteractor handGrab, IInteractor interactor,
+        public void InjectAllGrabStrengthIndicator(IHandGrabber handGrab, IInteractor interactor,
             MaterialPropertyBlockEditor handMaterialPropertyBlockEditor)
         {
             InjectHandGrab(handGrab);
@@ -201,7 +201,7 @@ namespace Oculus.Interaction
             InjectHandMaterialPropertyBlockEditor(handMaterialPropertyBlockEditor);
         }
 
-        public void InjectHandGrab(IHandGrabInteractor handGrab)
+        public void InjectHandGrab(IHandGrabber handGrab)
         {
             HandGrab = handGrab;
         }

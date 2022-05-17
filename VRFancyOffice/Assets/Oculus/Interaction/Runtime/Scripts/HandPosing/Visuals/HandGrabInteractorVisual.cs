@@ -138,13 +138,12 @@ namespace Oculus.Interaction.HandPosing.Visuals
 
             bool isSnapping = snapper.IsSnapping;
 
-            if (isSnapping && snap.SnapType != SnapType.None)
+            if (isSnapping && snap.HandAlignment != HandAlignType.None)
             {
                 fingersConstraint = snap.HandPose != null ? 1f : 0f;
                 wristConstraint = 1f;
             }
-            else if (snap.SnapType == SnapType.HandToObject
-                || snap.SnapType == SnapType.HandToObjectAndReturn)
+            else if (snap.HandAlignment == HandAlignType.AttractOnHover)
             {
                 fingersConstraint = snap.HandPose != null ? snapper.SnapStrength : 0f;
                 wristConstraint = snapper.SnapStrength;

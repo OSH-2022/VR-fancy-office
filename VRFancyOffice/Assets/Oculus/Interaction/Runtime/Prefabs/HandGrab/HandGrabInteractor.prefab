@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3282029263655771826}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &479229220
 MonoBehaviour:
@@ -45,57 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: {fileID: 8646129326984794350}
   _offset: {x: -0.1, y: -0.035, z: 0}
-  _rotation: {x: -0.105225, y: 0.6678411, z: -0.01393329, w: -0.7366965}
+  _rotation: {x: 0.105225, y: -0.6678412, z: 0.013933297, w: 0.7366965}
   _relativeTransform: {fileID: 0}
---- !u!1 &1487736799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1487736800}
-  - component: {fileID: 2729420837077267871}
-  m_Layer: 0
-  m_Name: Visuals
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1487736800
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487736799}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3282029263655771826}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2729420837077267871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487736799}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 887c8dbd7b891004dbddaf2d9f439564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _handGrabInteractor: {fileID: 8553364197529364881}
-  _handMaterialPropertyBlockEditor: {fileID: 0}
-  _glowLerpSpeed: 2
-  _glowColorLerpSpeed: 4
-  _fingerGlowColorWithInteractable: {r: 1, g: 0.82, b: 0.45, a: 1}
-  _fingerGlowColorWithNoInteractable: {r: 0.44, g: 0.56, b: 0.57, a: 1}
 --- !u!1 &206931871687596337
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +77,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3282029263655771826}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2225697885797083731
 MonoBehaviour:
@@ -142,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: {fileID: 8646129326984794350}
   _offset: {x: -0.11, y: -0.075, z: -0.02}
-  _rotation: {x: -0.105225, y: 0.6678411, z: -0.01393329, w: -0.7366965}
+  _rotation: {x: 0.105225, y: -0.6678412, z: 0.013933297, w: 0.7366965}
   _relativeTransform: {fileID: 0}
 --- !u!136 &2876613987327765954
 CapsuleCollider:
@@ -266,7 +217,6 @@ Transform:
   m_Children:
   - {fileID: 3282029262929392818}
   - {fileID: 1428723456311757809}
-  - {fileID: 1487736800}
   - {fileID: 479229219}
   - {fileID: 5051340845603383047}
   m_Father: {fileID: 0}
@@ -297,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9067480af55f5874d8f613b16812f968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeState: {fileID: 0}
+  _activeState: {fileID: 8646129326984794350}
   _interactableFilters: []
   _hand: {fileID: 8646129326984794350}
   _rigidbody: {fileID: 3282029262929392819}

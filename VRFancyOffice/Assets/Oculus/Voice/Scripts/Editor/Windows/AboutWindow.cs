@@ -26,7 +26,7 @@ namespace Oculus.Voice.Windows
         protected override GUIContent Title => VoiceSDKStyles.AboutTitle;
         protected override string ButtonLabel => VoiceSDKStyles.Texts.AboutCloseLabel;
         protected override string ContentSubheaderLabel => string.Empty;
-        
+
         protected override void LayoutFields()
         {
             WitEditorUI.LayoutKeyLabel(VoiceSDKStyles.Texts.AboutVoiceSdkVersionLabel, VoiceSDKVersion.VERSION);
@@ -35,7 +35,7 @@ namespace Oculus.Voice.Windows
 
             GUILayout.Space(16);
 
-            if (WitEditorUI.LayoutTextButton(VoiceSDKStyles.Texts.AboutTutorialButtonLabel))
+            if (GUILayout.Button(VoiceSDKStyles.Texts.AboutTutorialButtonLabel, WitStyles.TextButton))
             {
                 Application.OpenURL(VoiceSDKStyles.Texts.AboutTutorialButtonUrl);
             }

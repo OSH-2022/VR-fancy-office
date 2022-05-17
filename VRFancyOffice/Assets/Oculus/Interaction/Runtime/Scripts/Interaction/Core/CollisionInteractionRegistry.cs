@@ -23,8 +23,8 @@ namespace Oculus.Interaction
     /// </summary>
     public class CollisionInteractionRegistry<TInteractor, TInteractable> :
                              InteractableRegistry<TInteractor, TInteractable>
-                             where TInteractor : class, IInteractor<TInteractable>, IRigidbodyRef
-                             where TInteractable : class, IInteractable<TInteractor>, IRigidbodyRef
+                             where TInteractor : Interactor<TInteractor, TInteractable>, IRigidbodyRef
+                             where TInteractable : Interactable<TInteractor, TInteractable>, IRigidbodyRef
     {
         private Dictionary<Rigidbody, HashSet<TInteractable>> _rigidbodyCollisionMap;
         private Dictionary<TInteractable, InteractableTriggerBroadcaster> _broadcasters;

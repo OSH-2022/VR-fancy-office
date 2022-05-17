@@ -15,17 +15,20 @@ using UnityEngine;
 
 namespace Oculus.Interaction
 {
-    public class Tween : ITween
+    public class Tween : IMovement
     {
         private List<TweenCurve> _tweenCurves;
         private Pose _pose;
         public Pose Pose => _pose;
 
+        private Pose _startPose;
+        public Pose StartPose => _startPose;
+
         private float _maxOverlapTime;
         private float _tweenTime;
         private AnimationCurve _animationCurve;
 
-        public bool Stopped => _tweenCurves.TrueForAll(t => t.Curve.Progress() >= 1f);
+        public bool Stopped => _tweenCurves.TrueForAll(t => t.PrevProgress >= 1f);
 
         private class TweenCurve
         {
@@ -37,7 +40,7 @@ namespace Oculus.Interaction
 
         public Tween(Pose start, float tweenTime = 0.5f, float maxOverlapTime = 0.25f, AnimationCurve curve = null)
         {
-            _pose = start;
+            _pose = _startPose = start;
             _tweenTime = tweenTime;
             _maxOverlapTime = maxOverlapTime;
 
@@ -75,13 +78,14 @@ namespace Oculus.Interaction
             tweenCurve.Curve.Start();
         }
 
-        public void TweenTo(Pose target)
+        public void MoveTo(Pose target)
         {
             if (_pose.Equals(target))
             {
                 StopAndSetPose(target);
                 return;
             }
+
             TweenToInTime(target, _tweenTime);
         }
 
@@ -118,15 +122,23 @@ namespace Oculus.Interaction
                 tweenCurve.PrevProgress = progress;
             }
 
-
             float multiplier = 1.0f;
+            float overlap = 0.0f;
             Pose pose = _tweenCurves[_tweenCurves.Count - 1].Current;
             for (int i = _tweenCurves.Count - 2; i >= 0; i--)
             {
                 TweenCurve nextCurve = _tweenCurves[i + 1];
                 float timeProgress = nextCurve.Curve.ProgressTime();
-                float overlap = Mathf.Min(_maxOverlapTime, timeProgress) /
-                                Mathf.Min(_maxOverlapTime, nextCurve.Curve.AnimationLength);
+                if(nextCurve.Curve.AnimationLength == 0f)
+                {
+                    overlap = 1.0f;
+                }
+                else
+                {
+                    overlap = Mathf.Min(_maxOverlapTime, timeProgress) /
+                        Mathf.Min(_maxOverlapTime, nextCurve.Curve.AnimationLength);
+                }
+
                 if (overlap == 1.0f)
                 {
                     _tweenCurves.RemoveRange(0, i);

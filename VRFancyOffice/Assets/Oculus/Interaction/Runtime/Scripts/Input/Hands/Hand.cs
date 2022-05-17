@@ -203,7 +203,7 @@ namespace Oculus.Interaction.Input
             HmdDataAsset hmd = HmdData.GetData();
             if (!hmd.IsTracked)
             {
-                pose = new Pose();
+                pose = Pose.identity;
                 return false;
             }
 

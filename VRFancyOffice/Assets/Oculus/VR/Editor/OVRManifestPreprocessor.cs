@@ -235,7 +235,10 @@ public class OVRManifestPreprocessor
 		// OVRProjectConfig.HandTrackingSupport.ControllersAndHands => manifest entry present and required=false
 		// OVRProjectConfig.HandTrackingSupport.HandsOnly => manifest entry present and required=true
 		OVRProjectConfig.HandTrackingSupport targetHandTrackingSupport = OVRProjectConfig.GetProjectConfig().handTrackingSupport;
+		OVRProjectConfig.HandTrackingVersion targetHandTrackingVersion = OVRProjectConfig.GetProjectConfig().handTrackingVersion;
 		bool handTrackingEntryNeeded = OVRDeviceSelector.isTargetDeviceQuestFamily && (targetHandTrackingSupport != OVRProjectConfig.HandTrackingSupport.ControllersOnly);
+		bool handTrackingVersionEntryNeeded = handTrackingEntryNeeded && (targetHandTrackingVersion != OVRProjectConfig.HandTrackingVersion.Default);
+		string handTrackingVersionValue = (targetHandTrackingVersion == OVRProjectConfig.HandTrackingVersion.V2) ? "V2.0" : "V1.0";
 
 		AddOrRemoveTag(doc,
 			androidNamespaceURI,
@@ -261,6 +264,15 @@ public class OVRManifestPreprocessor
 			handTrackingEntryNeeded,
 			modifyIfFound,
 			"value", projectConfig.handTrackingFrequency.ToString());
+
+		AddOrRemoveTag(doc,
+			androidNamespaceURI,
+			"/manifest/application",
+			"meta-data",
+			"com.oculus.handtracking.version",
+			handTrackingVersionEntryNeeded,
+			modifyIfFound,
+			"value", handTrackingVersionValue);
 
 		//============================================================================
 		// System Keyboard

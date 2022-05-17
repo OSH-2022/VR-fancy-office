@@ -11,10 +11,9 @@ permissions and limitations under the License.
 ************************************************************************************/
 
 using System;
-using UnityEngine;
 
 namespace Oculus.Interaction.Deprecated
 {
     [Obsolete("Replaced by OneEuroFilterRotationHand")]
-    public class OneEuroFilterRotationDataModifier : MonoBehaviour { }
+    public class OneEuroFilterRotationDataModifier { }
 }

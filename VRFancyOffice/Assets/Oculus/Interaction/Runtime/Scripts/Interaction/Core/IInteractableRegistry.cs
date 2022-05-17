@@ -10,19 +10,10 @@ ANY KIND, either express or implied. See the License for the specific language g
 permissions and limitations under the License.
 ************************************************************************************/
 
-using System.Collections.Generic;
+using System;
 
-namespace Oculus.Interaction
+namespace Oculus.Interaction.Deprecated
 {
-    /// <summary>
-    /// A interface for a registry that houses a set of concrete Interactables.
-    /// </summary>
-    public interface IInteractableRegistry<TInteractor, TInteractable>
-                                          where TInteractable : IInteractable<TInteractor>
-    {
-        void Register(TInteractable interactable);
-        void Unregister(TInteractable interactable);
-        IEnumerable<TInteractable> List();
-        IEnumerable<TInteractable> List(TInteractor interactor);
-    }
+    [Obsolete]
+    public interface IInteractableRegistry<TInteractor, TInteractable> { }
 }

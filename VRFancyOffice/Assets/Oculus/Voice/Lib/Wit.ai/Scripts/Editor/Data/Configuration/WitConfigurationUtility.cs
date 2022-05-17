@@ -33,20 +33,12 @@ namespace Facebook.WitAi.Data.Configuration
         public static string[] WitConfigNames => witConfigNames;
 
         // Has configuration
-        public static bool HasValidConfig()
+        public static bool HasValidCustomConfig()
         {
             // Refresh list
             ReloadConfigurationData();
-            // Check configs
-            for (int i = 0; i < witConfigs.Length; i++)
-            {
-                if (!string.IsNullOrEmpty(witConfigs[i].clientAccessToken))
-                {
-                    return true;
-                }
-            }
-            // None found
-            return false;
+            // Find a valid custom configuration
+            return Array.Exists(witConfigs, (c) => !c.isDemoOnly);
         }
         // Refresh configuration asset list
         public static void ReloadConfigurationData()
@@ -173,11 +165,10 @@ namespace Facebook.WitAi.Data.Configuration
                     {
                         var application = WitApplication.FromJson(applications[i]);
                         WitAuthUtility.SetAppServerToken(application.id, serverToken);
-                        onRequestComplete("");
-                        return;
+                        break;
                     }
                 }
-                onRequestComplete("No matching application found!");
+                onRequestComplete("");
             }, (error) =>
             {
                 SetServerTokenComplete(serverToken, error, onSetComplete);
@@ -335,8 +326,11 @@ namespace Facebook.WitAi.Data.Configuration
             configuration.application.witConfiguration = configuration;
             configuration.application.UpdateData(() =>
             {
-                EditorUtility.SetDirty(configuration);
-                RefreshIntentsData(configuration, onRefreshComplete);
+                if (configuration != null)
+                {
+                    EditorUtility.SetDirty(configuration);
+                    RefreshIntentsData(configuration, onRefreshComplete);
+                }
             });
         }
         // Refresh intents data

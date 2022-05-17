@@ -84,6 +84,10 @@ namespace Oculus.Interaction.Input
         [Header("OVR Data Source")]
         [SerializeField, Interface(typeof(IOVRCameraRigRef))]
         private MonoBehaviour _cameraRigRef;
+        public IOVRCameraRigRef CameraRigRef { get; private set; }
+
+        [SerializeField]
+        private bool _processLateUpdates = false;
 
         [Header("Shared Configuration")]
         [SerializeField]
@@ -97,14 +101,24 @@ namespace Oculus.Interaction.Input
         private MonoBehaviour _hmdData;
         private IDataSource<HmdDataAsset> HmdData;
 
+        public bool ProcessLateUpdates
+        {
+            get
+            {
+                return _processLateUpdates;
+            }
+            set
+            {
+                _processLateUpdates = value;
+            }
+        }
+
         private readonly ControllerDataAsset _controllerDataAsset = new ControllerDataAsset();
         private OVRInput.Controller _ovrController;
         private Transform _ovrControllerAnchor;
         private ControllerDataSourceConfig _config;
 
         private OVRPointerPoseSelector _pointerPoseSelector;
-
-        public IOVRCameraRigRef CameraRigRef { get; private set; }
 
         #region OVR Controller Mappings
 
@@ -140,7 +154,7 @@ namespace Oculus.Interaction.Input
 
         protected override void Start()
         {
-            base.Start();
+            this.BeginStart(ref _started, base.Start);
             Assert.IsNotNull(CameraRigRef);
             Assert.IsNotNull(TrackingToWorldTransformer);
             Assert.IsNotNull(HmdData);
@@ -159,6 +173,35 @@ namespace Oculus.Interaction.Input
             _pointerPoseSelector = new OVRPointerPoseSelector(_handedness);
 
             UpdateConfig();
+            this.EndStart(ref _started);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (_started)
+            {
+                CameraRigRef.WhenInputDataDirtied += HandleInputDataDirtied;
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            if (_started)
+            {
+                CameraRigRef.WhenInputDataDirtied -= HandleInputDataDirtied;
+            }
+
+            base.OnDisable();
+        }
+
+        private void HandleInputDataDirtied(bool isLateUpdate)
+        {
+            if (isLateUpdate && !_processLateUpdates)
+            {
+                return;
+            }
+            MarkInputDataRequiresUpdate();
         }
 
         private ControllerDataSourceConfig Config

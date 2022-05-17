@@ -11,10 +11,9 @@ permissions and limitations under the License.
 ************************************************************************************/
 
 using System;
-using UnityEngine;
 
 namespace Oculus.Interaction.Deprecated
 {
     [Obsolete("Replaced by OneGrabRotateTransformer")]
-    public class OneHandRotateTransformer : MonoBehaviour { }
+    public class OneHandRotateTransformer { }
 }

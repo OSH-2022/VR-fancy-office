@@ -19,7 +19,7 @@ limitations under the License.
 
 ************************************************************************************/
 
-#if USING_XR_MANAGEMENT && USING_XR_SDK_OCULUS
+#if USING_XR_MANAGEMENT && (USING_XR_SDK_OCULUS || USING_XR_SDK_OPENXR)
 #define USING_XR_SDK
 #endif
 
@@ -38,7 +38,7 @@ using System.IO;
 using System.Diagnostics;
 
 [InitializeOnLoad]
-class OVRPluginUpdater
+public class OVRPluginUpdater
 {
 	enum PluginPlatform
 	{
@@ -63,11 +63,13 @@ class OVRPluginUpdater
 
 		public bool IsEnabled()
 		{
-			// TODO: Check each individual platform rather than using the Win64 DLL status for the overall package status.
-			string path = "";
-			if (Plugins.TryGetValue(PluginPlatform.Win64, out path))
+			foreach (PluginPlatform platform in Enum.GetValues(typeof(PluginPlatform)))
 			{
-				return File.Exists(path);
+				string path = "";
+				if (Plugins.TryGetValue(platform, out path) && File.Exists(path))
+				{
+					return true;
+				}
 			}
 
 			return false;
@@ -243,7 +245,7 @@ class OVRPluginUpdater
 		{
 			unityRunningInBatchmode = true;
 		}
- 
+
 		if (enableAndroidUniversalSupport)
 		{
 			unityVersionSupportsAndroidUniversal = true;
@@ -307,7 +309,7 @@ class OVRPluginUpdater
 		return GetUtilitiesRootPath() + @"/Plugins";
 	}
 
-	private static string GetUtilitiesRootPath()
+	public static string GetUtilitiesRootPath()
 	{
 		var so = ScriptableObject.CreateInstance(typeof(OVRPluginUpdaterStub));
 		var script = MonoScript.FromScriptableObject(so);
@@ -1196,8 +1198,8 @@ class OVRPluginUpdater
 					// Android Universal should only be enabled on supported Unity versions since it can prevent app launch.
 					return false;
 				}
-				else if (!pluginPkg.IsAndroidUniversalEnabled() && pluginPkg.IsAndroidUniversalPresent() && 
-					!pluginPkg.IsAndroidOpenXREnabled() && pluginPkg.IsAndroidOpenXRPresent() && 
+				else if (!pluginPkg.IsAndroidUniversalEnabled() && pluginPkg.IsAndroidUniversalPresent() &&
+					!pluginPkg.IsAndroidOpenXREnabled() && pluginPkg.IsAndroidOpenXRPresent() &&
 					unityVersionSupportsAndroidUniversal)
 				{
 					// Android Universal is present and should be enabled on supported Unity versions since ARM64 config will fail otherwise.

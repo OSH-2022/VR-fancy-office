@@ -47,14 +47,45 @@ namespace Oculus.Interaction
         private bool _allowMultipleCollisions = false;
         private float _timeAtLastCollision = 0f;
 
+        protected bool _started = false;
+
+        private CollisionEvents _collisionEvents;
+
         protected virtual void Start()
         {
+            this.BeginStart(ref _started);
             Assert.IsNotNull(_impactAudioEvents.SoftCollisionSound, "AudioPhysics component has no audio soft collision audio trigger assigned");
             Assert.IsNotNull(_impactAudioEvents.HardCollisionSound, "AudioPhysics component has no audio hard collision audio trigger assigned");
             Assert.IsNotNull(_rigidbody, "AudioPhysics component has no rigidbody assigned");
+            _collisionEvents = _rigidbody.gameObject.AddComponent<CollisionEvents>();
+            this.EndStart(ref _started);
         }
 
-        protected virtual void OnCollisionEnter(Collision collision)
+        protected virtual void OnEnable()
+        {
+            if (_started)
+            {
+                _collisionEvents.WhenCollisionEnter += HandleCollisionEnter;
+            }
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (_started)
+            {
+                _collisionEvents.WhenCollisionEnter -= HandleCollisionEnter;
+            }
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (_collisionEvents != null)
+            {
+                Destroy(_collisionEvents);
+            }
+        }
+
+        private void HandleCollisionEnter(Collision collision)
         {
             TryPlayCollisionAudio(collision, _rigidbody);
         }
@@ -133,6 +164,16 @@ namespace Oculus.Interaction
             if (audioTrigger != null)
             {
                 audioTrigger.PlayAudio();
+            }
+        }
+
+        public class CollisionEvents : MonoBehaviour
+        {
+            public event Action<Collision> WhenCollisionEnter = delegate { };
+
+            private void OnCollisionEnter(Collision collision)
+            {
+                WhenCollisionEnter.Invoke(collision);
             }
         }
     }

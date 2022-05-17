@@ -187,8 +187,8 @@ namespace Oculus.Interaction.HandPosing
         {
             public HandPose underHandPose = new HandPose();
             public HandPose overHandPose = new HandPose();
-            public Pose underSnapPoint = new Pose();
-            public Pose overSnapPoint = new Pose();
+            public Pose underSnapPoint = Pose.identity;
+            public Pose overSnapPoint = Pose.identity;
         }
     }
 }

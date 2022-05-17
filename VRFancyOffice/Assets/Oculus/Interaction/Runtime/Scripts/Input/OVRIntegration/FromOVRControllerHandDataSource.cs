@@ -33,6 +33,9 @@ namespace Oculus.Interaction.Input
         private MonoBehaviour _cameraRigRef;
         private IOVRCameraRigRef CameraRigRef;
 
+        [SerializeField]
+        private bool _processLateUpdates = false;
+
         [Header("Shared Configuration")]
         [SerializeField]
         private Handedness _handedness;
@@ -45,12 +48,23 @@ namespace Oculus.Interaction.Input
         private MonoBehaviour _hmdData;
         private IDataSource<HmdDataAsset> HmdData;
 
+        public bool ProcessLateUpdates
+        {
+            get
+            {
+                return _processLateUpdates;
+            }
+            set
+            {
+                _processLateUpdates = value;
+            }
+        }
+
         private readonly HandDataAsset _handDataAsset = new HandDataAsset();
         private OVRInput.Controller _ovrController;
         private Transform _ovrControllerAnchor;
         private HandDataSourceConfig _config;
         private Pose _poseOffset;
-
 
         public static Quaternion WristFixupRotation { get; } =
             new Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
@@ -71,7 +85,7 @@ namespace Oculus.Interaction.Input
 
         protected override void Start()
         {
-            base.Start();
+            this.BeginStart(ref _started, base.Start);
             Assert.IsNotNull(CameraRigRef);
             Assert.IsNotNull(TrackingToWorldTransformer);
             Assert.IsNotNull(HmdData);
@@ -98,14 +112,46 @@ namespace Oculus.Interaction.Input
 
             UpdateSkeleton();
             UpdateConfig();
+            this.EndStart(ref _started);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (_started)
+            {
+                CameraRigRef.WhenInputDataDirtied += HandleInputDataDirtied;
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            if (_started)
+            {
+                CameraRigRef.WhenInputDataDirtied -= HandleInputDataDirtied;
+            }
+
+            base.OnDisable();
+        }
+
+        private void HandleInputDataDirtied(bool isLateUpdate)
+        {
+            if (isLateUpdate && !_processLateUpdates)
+            {
+                return;
+            }
+            MarkInputDataRequiresUpdate();
         }
 
         private void UpdateSkeleton()
         {
-            for (int i = 0; i < _skeleton.joints.Length; i++)
+            if (_started)
             {
-                _skeleton.joints[i].pose.position = _bones[i].localPosition;
-                _skeleton.joints[i].pose.rotation = _bones[i].localRotation;
+                for (int i = 0; i < _skeleton.joints.Length; i++)
+                {
+                    _skeleton.joints[i].pose.position = _bones[i].localPosition;
+                    _skeleton.joints[i].pose.rotation = _bones[i].localRotation;
+                }
             }
         }
 

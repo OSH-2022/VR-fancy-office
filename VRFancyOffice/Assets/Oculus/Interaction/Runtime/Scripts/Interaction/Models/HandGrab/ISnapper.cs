@@ -22,21 +22,15 @@ namespace Oculus.Interaction.HandPosing
     /// </summary>
     public enum SnapType
     {
-        /// <summary>
-        /// Move the object towards the hand after the user starts a grab
-        /// </summary>
-        ObjectToHand,
-        /// <summary>
-        /// Move the hand towards the object and stay
-        /// </summary>
-        HandToObject,
-        /// <summary>
-        /// Move the hand towards the object and return to the original position
-        /// </summary>
-        HandToObjectAndReturn,
-        /// <summary>
-        /// Keeps both object and hand at the same distance while grabbed
-        /// </summary>
+        AttractToHand,
+        AnchorAtHand,
+        Custom
+    }
+
+    public enum HandAlignType
+    {
+        AlignOnGrab,
+        AttractOnHover,
         None
     }
 
@@ -63,8 +57,7 @@ namespace Oculus.Interaction.HandPosing
     public interface ISnappable
     {
         Transform RelativeTo { get; }
-        SnapType SnapType { get; }
-
+        HandAlignType HandAlignment { get; }
         Collider[] Colliders { get; }
 
         bool UsesHandPose();
@@ -76,7 +69,7 @@ namespace Oculus.Interaction.HandPosing
     /// </summary>
     public interface ISnapData
     {
-        SnapType SnapType { get; }
+        HandAlignType HandAlignment { get; }
         HandPose HandPose { get; }
         Pose WorldSnapPose { get; }
     }

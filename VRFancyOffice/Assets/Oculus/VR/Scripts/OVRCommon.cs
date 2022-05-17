@@ -10,7 +10,7 @@ ANY KIND, either express or implied. See the License for the specific language g
 permissions and limitations under the License.
 ************************************************************************************/
 
-#if USING_XR_MANAGEMENT && USING_XR_SDK_OCULUS
+#if USING_XR_MANAGEMENT && (USING_XR_SDK_OCULUS || USING_XR_SDK_OPENXR)
 #define USING_XR_SDK
 #endif
 
@@ -72,22 +72,32 @@ public static class OVRExtensions
 	/// </summary>
 	public static OVRPose ToWorldSpacePose(this OVRPose trackingSpacePose, Camera mainCamera)
 	{
-		OVRPose headPose = OVRPose.identity;
-
-		Vector3 pos;
-		Quaternion rot;
-		if (OVRNodeStateProperties.GetNodeStatePropertyVector3(Node.Head, NodeStatePropertyType.Position, OVRPlugin.Node.Head, OVRPlugin.Step.Render, out pos))
-			headPose.position = pos;
-		if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.Head, NodeStatePropertyType.Orientation, OVRPlugin.Node.Head, OVRPlugin.Step.Render, out rot))
-			headPose.orientation = rot;
-
 		// Transform from tracking-Space to head-Space
-		OVRPose poseInHeadSpace = headPose.Inverse() * trackingSpacePose;
+		OVRPose poseInHeadSpace = trackingSpacePose.ToHeadSpacePose();
 
 		// Transform from head space to world space
 		OVRPose ret = mainCamera.transform.ToOVRPose() * poseInHeadSpace;
 
 		return ret;
+	}
+	
+	/// <summary>
+	/// Converts the given pose from tracking-space to head-space.
+	/// </summary>
+	public static OVRPose ToHeadSpacePose(this OVRPose trackingSpacePose)
+	{
+		OVRPose headPose = OVRPose.identity;
+
+		Vector3 pos;
+		Quaternion rot;
+		if (OVRNodeStateProperties.GetNodeStatePropertyVector3(UnityEngine.XR.XRNode.Head, NodeStatePropertyType.Position, OVRPlugin.Node.Head, OVRPlugin.Step.Render, out pos))
+			headPose.position = pos;
+		if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(UnityEngine.XR.XRNode.Head, NodeStatePropertyType.Orientation, OVRPlugin.Node.Head, OVRPlugin.Step.Render, out rot))
+			headPose.orientation = rot;
+
+		OVRPose poseInHeadSpace = headPose.Inverse() * trackingSpacePose;
+
+		return poseInHeadSpace;
 	}
 
 	/// <summary>

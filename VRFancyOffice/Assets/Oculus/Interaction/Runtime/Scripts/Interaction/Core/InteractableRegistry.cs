@@ -17,10 +17,9 @@ namespace Oculus.Interaction
     /// <summary>
     /// A registry that houses a set of concrete Interactables.
     /// </summary>
-    public class InteractableRegistry<TInteractor, TInteractable> :
-                                     IInteractableRegistry<TInteractor, TInteractable>
-                                     where TInteractor:IInteractor<TInteractable>
-                                     where TInteractable : IInteractable<TInteractor>
+    public class InteractableRegistry<TInteractor, TInteractable>
+                                     where TInteractor : Interactor<TInteractor, TInteractable>
+                                     where TInteractable : Interactable<TInteractor, TInteractable>
     {
         private static List<TInteractable> _interactables;
         private List<TInteractable> _interactableEnumeratorList;

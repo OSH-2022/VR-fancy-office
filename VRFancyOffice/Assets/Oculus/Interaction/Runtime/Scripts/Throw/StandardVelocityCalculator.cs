@@ -10,6 +10,7 @@ ANY KIND, either express or implied. See the License for the specific language g
 permissions and limitations under the License.
 ************************************************************************************/
 
+using Oculus.Interaction.Input;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,14 +91,16 @@ namespace Oculus.Interaction.Throw
             "then a last resort method is used.")]
         private float _maxPercentZeroSamplesTrendVeloc = 0.5f;
 
-        [SerializeField, Tooltip("Lower this number in case linear release velocity feels " +
-            "too fast. It scales each linear velocity sample buffered.")]
-        private float _linearVelocityScaleModifier = 0.8f;
+        [Header("Sampling filtering.")]
+        [SerializeField]
+        private OneEuroFilterPropertyBlock _filterProps = OneEuroFilterPropertyBlock.Default;
 
         public float UpdateFrequency => _updateFrequency;
         private float _updateFrequency = -1.0f;
         private float _updateLatency = -1.0f;
         private float _lastUpdateTime = -1.0f;
+
+        private IOneEuroFilter<Vector3> _linearVelocityFilter;
 
         public Vector3 ReferenceOffset
         {
@@ -111,7 +114,8 @@ namespace Oculus.Interaction.Throw
             }
         }
 
-        public float InstantVelocityInfluence {
+        public float InstantVelocityInfluence
+        {
             get
             {
                 return _instantVelocityInfluence;
@@ -182,18 +186,6 @@ namespace Oculus.Interaction.Throw
             }
         }
 
-        public float LinearVelocityScaleModifier
-        {
-            get
-            {
-                return _linearVelocityScaleModifier;
-            }
-            set
-            {
-                _linearVelocityScaleModifier = value;
-            }
-        }
-
         public Vector3 AddedInstantLinearVelocity { get; private set; }
         public Vector3 AddedTrendLinearVelocity { get; private set; }
         public Vector3 AddedTangentialLinearVelocity { get; private set; }
@@ -242,6 +234,8 @@ namespace Oculus.Interaction.Throw
                 * _bufferingParams.SampleFrequency);
             _bufferedPoses.Capacity = _bufferSize;
 
+            _linearVelocityFilter = OneEuroFilter.CreateVector3();
+
             Assert.IsNotNull(ThrowInputDevice);
         }
 
@@ -285,6 +279,9 @@ namespace Oculus.Interaction.Throw
 
             _bufferedPoses.Clear();
             _lastWritePos = -1;
+
+            _linearVelocityFilter.Reset();
+
             return newVelocity;
         }
 
@@ -657,10 +654,11 @@ namespace Oculus.Interaction.Throw
         {
             (_linearVelocity, _angularVelocity) = GetLatestLinearAndAngularVelocities(
                 referencePose, delta);
-            _linearVelocity *= _linearVelocityScaleModifier;
+             _linearVelocity = _linearVelocityFilter.Step(_linearVelocity);
 
-            WhenNewSampleAvailable(new ReleaseVelocityInformation(_linearVelocity, _angularVelocity,
-                referencePose.position));
+            var newReleaseVelocInfo = new ReleaseVelocityInformation(_linearVelocity, _angularVelocity,
+                referencePose.position);
+            WhenNewSampleAvailable(newReleaseVelocInfo);
 
             _previousReferencePosition = referencePose.position;
             _previousReferenceRotation = referencePose.rotation;
@@ -674,7 +672,6 @@ namespace Oculus.Interaction.Throw
             {
                 return (Vector3.zero, Vector3.zero);
             }
-
             Vector3 newLinearVelocity = (referencePose.position -
                 _previousReferencePosition.Value) / delta;
             var newAngularVelocity = VelocityCalculatorUtilMethods.ToAngularVelocity(

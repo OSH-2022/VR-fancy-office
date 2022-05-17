@@ -15,6 +15,7 @@ using UnityEditor;
 using System.Reflection;
 using Facebook.WitAi.Data.Configuration;
 using Facebook.WitAi.Windows;
+using Oculus.Voice.Inspectors;
 
 namespace Oculus.Voice.Windows
 {
@@ -24,7 +25,7 @@ namespace Oculus.Voice.Windows
         protected override bool ShouldLayoutField(SerializedProperty property, FieldInfo subfield)
         {
             string appID = GetFieldStringValue(property, "id").ToLower();
-            if (!string.IsNullOrEmpty(appID) && appID.StartsWith("voice"))
+            if (AppVoiceExperienceWitConfigurationEditor.IsBuiltInConfiguration(appID))
             {
                 switch (subfield.Name)
                 {

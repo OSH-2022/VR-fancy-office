@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Oculus.Interaction
 {
-    public interface IPointableCanvas : IPointable
+    public interface IPointableCanvas : IPointableElement
     {
         Canvas Canvas { get; }
     }

@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Oculus.Interaction
 {
-    public class CandidatePositionComparer : InteractorComparer<ICandidatePosition>
+    public class CandidatePositionComparer : CandidateComparer<ICandidatePosition>
     {
         [SerializeField]
         private Transform _compareOrigin;
