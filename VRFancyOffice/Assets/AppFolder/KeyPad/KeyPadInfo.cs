@@ -15,16 +15,17 @@ public class KeyPadInfo : MonoBehaviour
     const int KeyPad_7=7;
     const int KeyPad_8=8;
     const int KeyPad_9=9;
-    const int KeyPad_0=0;
+    const int KeyPad_0=10;
     const int KeyPad_MINUS=11; //-
     const int KeyPad_EQUAL=12; //=
-    const int KeyPad_BACKSPACE=14; //Backspace
-    const int KeyPad_TAB=15; //Tab
-    const int KeyPad_Q=16;
-    const int KeyPad_W=17;
-    const int KeyPad_E=18;
-    const int KeyPad_R=19;
-    const int KeyPad_T=20;
+    const int KeyPad_BACKSPACE=13; //Backspace
+    const int KeyPad_TAB=14; //Tab
+    const int KeyPad_Q=15;
+    const int KeyPad_W=16;
+    const int KeyPad_E=17;
+    const int KeyPad_R=18;
+    const int KeyPad_T=19;
+    const int KeyPad_Y=20;
     const int KeyPad_U=21;
     const int KeyPad_I=22;
     const int KeyPad_O=23;
@@ -66,15 +67,13 @@ public class KeyPadInfo : MonoBehaviour
     const int KeyPad_DOWN=59;
     const int KeyPad_LEFT=60;
     const int KeyPad_RIGHT=61;
-    public bool[] KeyState = new bool[62];
-    private int NumKeys=62;
+    public List<bool> KeyState;
+    private int NumKeys;
     // Start is called before the first frame update
     void Start()
     {
-        for(int i=0;i<NumKeys;i++)
-        {
-            KeyState[i]=false;
-        }
+        KeyState=GameObject.Find("GlobalScripts").GetComponent<GlobalVar>().KeyState;
+        NumKeys = KeyState.Count;
     }
 
     // Update is called once per frame
