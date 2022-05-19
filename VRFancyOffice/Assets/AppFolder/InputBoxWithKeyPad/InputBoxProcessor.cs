@@ -313,4 +313,8 @@ public class InputBoxProcessor : MonoBehaviour
         AfterSubmit.Invoke();
         Destroy(KeyBoardParentObject);
     }
+    public void Cancel()
+    {
+        Destroy(KeyBoardParentObject);
+    }
 }
