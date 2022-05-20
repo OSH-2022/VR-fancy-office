@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _activeState: {fileID: 0}
   _interactableFilters: []
+  MaxIterationsPerFrame: 3
   _pointTransform: {fileID: 7784094158884016172}
   _touchReleaseThreshold: 0.002
   _dragStartCurve:

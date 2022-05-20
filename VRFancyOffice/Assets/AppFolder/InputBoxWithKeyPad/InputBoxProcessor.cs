@@ -72,7 +72,7 @@ public class InputBoxProcessor : MonoBehaviour
     private List<bool> KeyState;
     public string buffer=string.Empty;
     public TMP_Text display;
-    public GameObject KeyBoardParentObject;
+    public GameObject DestroyAfterCancelled;
     public UnityEvent AfterSubmit;
     private bool[] KeyProcessed=new bool[62];
     private int NumKeys=62;
@@ -311,10 +311,9 @@ public class InputBoxProcessor : MonoBehaviour
     public void Submit()
     {
         AfterSubmit.Invoke();
-        Destroy(KeyBoardParentObject);
     }
     public void Cancel()
     {
-        Destroy(KeyBoardParentObject);
+        Destroy(DestroyAfterCancelled);
     }
 }

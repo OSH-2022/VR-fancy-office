@@ -945,6 +945,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3841408908557691870}
+        m_TargetAssemblyTypeName: MainMenuOptionProcess, Assembly-CSharp
+        m_MethodName: ThreeDObjImport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenInteractorsCountUpdated:
     m_PersistentCalls:
       m_Calls: []
@@ -960,6 +972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7642643931947786375}
+  - component: {fileID: 3841408908557691870}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -985,6 +998,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 190, y: 90, z: 0}
+--- !u!114 &3841408908557691870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924319502952109923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50f1488f6414da47871027fea9ac6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainMenu: {fileID: 1924319502952109923}
+  ObjImporterPrefab: {fileID: 6414148621355288820, guid: 8b08765c3d5f11c49925857341ace83a, type: 3}
 --- !u!1 &1930659238234627571
 GameObject:
   m_ObjectHideFlags: 0

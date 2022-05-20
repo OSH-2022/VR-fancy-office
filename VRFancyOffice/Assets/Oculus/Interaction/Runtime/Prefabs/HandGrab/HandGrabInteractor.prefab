@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _activeState: {fileID: 8646129326984794350}
   _interactableFilters: []
+  MaxIterationsPerFrame: 3
   _hand: {fileID: 8646129326984794350}
   _rigidbody: {fileID: 3282029262929392819}
   _handGrabApi: {fileID: 2165145697951878349}
