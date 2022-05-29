@@ -135,6 +135,9 @@ public class InputBoxProcessor : MonoBehaviour
             CheckKey(KeyPad_B , "b");
             CheckKey(KeyPad_N , "n");
             CheckKey(KeyPad_M , "m");
+            CheckKey(KeyPad_COMMA , ",");
+            CheckKey(KeyPad_DOT , ".");
+            CheckKey(KeyPad_DASH , "/");
             CheckKey(KeyPad_SPACE , " ");
             CheckKey(KeyPad_MINUS , "-");
             CheckKey(KeyPad_EQUAL , "=");
@@ -187,6 +190,9 @@ public class InputBoxProcessor : MonoBehaviour
             CheckKey(KeyPad_B , "b");
             CheckKey(KeyPad_N , "n");
             CheckKey(KeyPad_M , "m");
+            CheckKey(KeyPad_COMMA , "<");
+            CheckKey(KeyPad_DOT , ">");
+            CheckKey(KeyPad_DASH , "?");
             CheckKey(KeyPad_SPACE , " ");
             CheckKey(KeyPad_MINUS , "_");
             CheckKey(KeyPad_EQUAL , "+");
@@ -239,6 +245,9 @@ public class InputBoxProcessor : MonoBehaviour
             CheckKey(KeyPad_B , "B");
             CheckKey(KeyPad_N , "N");
             CheckKey(KeyPad_M , "M");
+            CheckKey(KeyPad_COMMA , "<");
+            CheckKey(KeyPad_DOT , ">");
+            CheckKey(KeyPad_DASH , "?");
             CheckKey(KeyPad_SPACE , " ");
             CheckKey(KeyPad_MINUS , "_");
             CheckKey(KeyPad_EQUAL , "+");
@@ -291,6 +300,9 @@ public class InputBoxProcessor : MonoBehaviour
             CheckKey(KeyPad_B , "B");
             CheckKey(KeyPad_N , "N");
             CheckKey(KeyPad_M , "M");
+            CheckKey(KeyPad_COMMA , ",");
+            CheckKey(KeyPad_DOT , ".");
+            CheckKey(KeyPad_DASH , "/");
             CheckKey(KeyPad_SPACE , " ");
             CheckKey(KeyPad_MINUS , "-");
             CheckKey(KeyPad_EQUAL , "=");
