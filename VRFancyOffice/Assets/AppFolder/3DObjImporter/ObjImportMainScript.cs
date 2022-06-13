@@ -4,11 +4,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ObjImportMainScript : MonoBehaviour
 {
     public GameObject InputBoxWithKeyPad;
     public GameObject ImportedObjectsParent;
+    public GameObject ControlPanel;
+    public GameObject ObjImporterInst;
+    private GameObject Legend; //图例
+    public Transform LegendBox; //包含图例的“盒子”
     private Transform ImportedObjectsParentTrans;
     private Vector3 InitializedPosition = new Vector3(-0.3f,1.5f,0.3f); //To be modified
     private string dir;
@@ -16,14 +21,19 @@ public class ObjImportMainScript : MonoBehaviour
     private string error = string.Empty;
     private List<GameObject> parts = new List<GameObject>();
     private List<int> shown = new List<int>();
+    private List<string> NameList=new List<string>();
     private FileInfo[] files;
     private List<xmlParser> xmlParserList;
+    private int index = new int();
+    public TMP_Text Name;
+    public TMP_Text Visibility;
     // Start is called before the first frame update
     void Start()
     {
         //InitializedPosition=...
         transform.position = InitializedPosition;
         ImportedObjectsParentTrans = ImportedObjectsParent.transform;
+        ControlPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,11 +65,15 @@ public class ObjImportMainScript : MonoBehaviour
                 loadedObject.transform.SetParent(ImportedObjectsParentTrans);
                 parts.Add(loadedObject);
                 shown.Add(1);
+                NameList.Add(_part.fileName);
                 error = string.Empty;
             }
             SetModelCenterEvent(ImportedObjectsParentTrans);
         }
         Destroy(InputBoxWithKeyPad);
+        index=0;
+        ControlPanel.SetActive(true);
+        Name.SetText(NameList[index]);
     }
     private string GetFiles(string path)
     {
@@ -109,5 +123,33 @@ public class ObjImportMainScript : MonoBehaviour
         if(v[0]>v[1]&&v[0]>v[2]) return v[0];
         else if(v[1]>v[2]&&v[1]>v[3]) return v[1];
         else return v[2];
+    }
+    public void DecIndex()
+    {
+        if(index>0) index=index-1;
+        SetVisButton();
+        Name.SetText(NameList[index]);
+    }
+    public void IncIndex()
+    {
+        if(index<NameList.Count-1) index=index+1;
+        SetVisButton();
+        Name.SetText(NameList[index]);
+    }
+    public void ChangeVisibility()
+    {
+        shown[index]=shown[index]==1?0:1;
+        if(shown[index]==0) parts[index].SetActive(false);
+        else parts[index].SetActive(true);
+        SetVisButton();
+    }
+    public void _Destroy()
+    {
+        Destroy(ObjImporterInst);
+    }
+    private void SetVisButton()
+    {
+        if(shown[index]==1) Visibility.SetText("Hide");
+        else Visibility.SetText("Show");
     }
 }
