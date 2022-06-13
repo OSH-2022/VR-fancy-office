@@ -68,12 +68,13 @@ public class ObjImportMainScript : MonoBehaviour
                 NameList.Add(_part.fileName);
                 error = string.Empty;
             }
-            SetModelCenterEvent(ImportedObjectsParentTrans);
+            SetModelCenterEvent(ImportedObjectsParentTrans,1f);
         }
         Destroy(InputBoxWithKeyPad);
         index=0;
         ControlPanel.SetActive(true);
         Name.SetText(NameList[index]);
+        CreateLegend();
     }
     private string GetFiles(string path)
     {
@@ -87,7 +88,7 @@ public class ObjImportMainScript : MonoBehaviour
         }
         return DSaaSPath;
     }
-    private void SetModelCenterEvent(Transform tran)
+    private void SetModelCenterEvent(Transform tran,float size)
     {
         Vector3 scale = tran.localScale;
         Vector3 center = Vector3.zero;
@@ -102,7 +103,7 @@ public class ObjImportMainScript : MonoBehaviour
         {
             bounds.Encapsulate(item.bounds);
         }
-        tran.localScale = new Vector3(scale[0]/MaxVec3(bounds.size),scale[1]/MaxVec3(bounds.size),scale[2]/MaxVec3(bounds.size));
+        tran.localScale = new Vector3(scale[0]/MaxVec3(bounds.size),scale[1]/MaxVec3(bounds.size),scale[2]/MaxVec3(bounds.size))*size;
         scale = tran.localScale;
         tran.localPosition = Vector3.zero;
         tran.rotation = Quaternion.Euler(Vector3.zero);
@@ -115,13 +116,22 @@ public class ObjImportMainScript : MonoBehaviour
         center /= tran.GetComponentsInChildren<Renderer>().Length;
         foreach (Transform item in tran)
         {
-            item.position = item.position - center + InitializedPosition;
+            item.position = item.position - center + tran.position;
         }
+    }
+    private void CreateLegend()
+    {
+        LegendBox.localPosition=new Vector3(0,0,0);
+        LegendBox.localScale=new Vector3(1f,1f,1f);
+        Legend=Instantiate(parts[index]);
+        Legend.transform.SetParent(LegendBox);
+        Legend.transform.localPosition=new Vector3(0,0,0);
+        SetModelCenterEvent(LegendBox,0.15f);
     }
     private float MaxVec3(Vector3 v)
     {
         if(v[0]>v[1]&&v[0]>v[2]) return v[0];
-        else if(v[1]>v[2]&&v[1]>v[3]) return v[1];
+        else if(v[1]>v[2]&&v[1]>v[2]) return v[1];
         else return v[2];
     }
     public void DecIndex()
@@ -129,12 +139,16 @@ public class ObjImportMainScript : MonoBehaviour
         if(index>0) index=index-1;
         SetVisButton();
         Name.SetText(NameList[index]);
+        DestroyImmediate(Legend);
+        CreateLegend();
     }
     public void IncIndex()
     {
         if(index<NameList.Count-1) index=index+1;
         SetVisButton();
         Name.SetText(NameList[index]);
+        DestroyImmediate(Legend);
+        CreateLegend();
     }
     public void ChangeVisibility()
     {
