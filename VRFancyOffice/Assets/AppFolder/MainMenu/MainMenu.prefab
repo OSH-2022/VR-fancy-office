@@ -1011,8 +1011,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 1924319502952109923}
-  ObjImporterPrefab: {fileID: 6244432174409120231, guid: 4047a7fab5942cd4e8bc515efc21dd10, type: 3}
-  RemoteDesktopPrefab: {fileID: 1327954844634922502, guid: 183182577e6859646a38b3d1841d6ece, type: 3}
+  ObjImporterPrefab: {fileID: 6244432174409120231, guid: 4047a7fab5942cd4e8bc515efc21dd10,
+    type: 3}
+  RemoteDesktopPrefab: {fileID: 2404118840665068150, guid: 183182577e6859646a38b3d1841d6ece,
+    type: 3}
 --- !u!1 &1930659238234627571
 GameObject:
   m_ObjectHideFlags: 0

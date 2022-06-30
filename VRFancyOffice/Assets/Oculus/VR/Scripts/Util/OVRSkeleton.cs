@@ -271,6 +271,7 @@ public class OVRSkeleton : MonoBehaviour
 			if (!_capsulesGO)
 			{
 				_capsulesGO = new GameObject("Capsules");
+				_capsulesGO.layer=LayerMask.NameToLayer("OVRHand");
 				_capsulesGO.transform.SetParent(transform, false);
 				_capsulesGO.transform.localPosition = Vector3.zero;
 				_capsulesGO.transform.localRotation = Quaternion.identity;
@@ -291,6 +292,7 @@ public class OVRSkeleton : MonoBehaviour
 				if (capsule.CapsuleRigidbody == null)
 				{
 					capsule.CapsuleRigidbody = new GameObject(BoneLabelFromBoneId(_skeletonType, bone.Id) + "_CapsuleRigidbody").AddComponent<Rigidbody>();
+					capsule.CapsuleRigidbody.gameObject.layer=LayerMask.NameToLayer("OVRHand");
 					capsule.CapsuleRigidbody.mass = 1.0f;
 					capsule.CapsuleRigidbody.isKinematic = true;
 					capsule.CapsuleRigidbody.useGravity = false;
@@ -319,6 +321,7 @@ public class OVRSkeleton : MonoBehaviour
 				capsule.CapsuleCollider.center = Vector3.right * mag * 0.5f;
 
 				GameObject ccGO = capsule.CapsuleCollider.gameObject;
+				ccGO.layer=LayerMask.NameToLayer("OVRHand");
 				ccGO.transform.SetParent(rbGO.transform, false);
 				ccGO.transform.localPosition = p0;
 				ccGO.transform.localRotation = rot;
