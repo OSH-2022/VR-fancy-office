@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Net.Sockets;
+using System.Runtime.InteropServices
 
 public class RemoteDesktopMainScript : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class RemoteDesktopMainScript : MonoBehaviour
     private string click_msg = string.Empty;
     private string drag_msg = string.Empty;
     private string release_msg = string.Empty;
+	private ulong keyboard_msg = 0;
+	[StructLayoutAttribute(LayoutKind.Explicit)]
+	private struct cUnion {
+		[FieldOffsetAttribute(0)] public ulong ull;
+		[FiledOffsetAttribute(0)] public double d;
+	}
+	private cUnion xpos, ypos;
     public int connected=0;
     // Start is called before the first frame update
     void Start()
@@ -35,21 +43,16 @@ public class RemoteDesktopMainScript : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
+	{
         if(connected==1)
-        {
-            int a;
-            if(drag_msg!="") send(drag_msg);
-            if(click_msg!="") send(click_msg);
-            if(release_msg!="") send(release_msg);
+		{
             List <bool> KeyState=GameObject.Find("GlobalScripts").GetComponent<GlobalVar>().KeyState;
-            ulong keyboard_msg = 0;
-            for (int i = 61; i >= 0; --i)
-                keyboard_msg = keyboard_msg << 1 | ( KeyState[i] ? 1ul : 0ul );
-            send("6 " + keyboard_msg.ToString() + " ");
-            click_msg="";
-            drag_msg="";
-            release_msg="";
+            for (int i = 0; i < 62; ++i)
+				if (KeyState[i])
+					keyboard_msg |= 1ul << i;
+				else
+					keyboard_msg &= -1ul << i;
+			send(xpos.ull, ypos.ull, keyboard_msg);
         }
     }
     public void SetIP()
@@ -71,24 +74,16 @@ public class RemoteDesktopMainScript : MonoBehaviour
         Arch.SetActive(true);
         KeyPad.SetActive(true);
     }
-    private void send(string msg)
-    {
-        byte[] bytes = System.Text.Encoding.Default.GetBytes(msg);
+    private void send(ulong x, ulong y, ulong msg) {
+        byte[] bytes = new byte[24]{ 
+			x >> 56, x >> 48 & 255, x >> 40 & 255, x >> 32 & 255, x >> 24 & 255, x >> 16 & 255, x >> 8 & 255, x & 255,
+			y >> 56, y >> 48 & 255, y >> 40 & 255, y >> 32 & 255, y >> 24 & 255, y >> 16 & 255, y >> 8 & 255, y & 255,
+			msg >> 56, msg >> 48 & 255, msg >> 40 & 255, msg >> 32 & 255, msg >> 24 & 255, msg >> 16 & 255, msg >> 8 & 255, msg & 255 };
         socket.Send(bytes);
     }
-    public void LeftButtonDown()
-    {
-        click_msg="2 ";
-    }
-    public void LeftButtonUp()
-    {
-        release_msg="3 ";
-    }
-    public void Move(double x, double y)
-    {
-        int _x=(int)(x*1000);
-        int _y=(int)(y*1000);
-        string msg=string.Format("1 {0} {1} ",_x,_y);
-        drag_msg=msg;
-    }
+    public void LeftButtonDown() { keyboard_msg |= 1ul << 62; }
+    public void LeftButtonUp() { keyboard_msg &= -1ul << 62; }
+	public void RightButtonDown() { keyboard_msg |= 1ul << 63; }
+	public void RightButtonUp() { keyboard_msg &= -1ul << 63; }
+    public void Move(double x, double y) { xpos.d = x; ypos.d = y; }
 }
