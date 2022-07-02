@@ -1,11 +1,12 @@
 import socket
-from pynput.mouse import Button, Controller
+from pynput import mouse, keyboard
+# from pynput.mouse import Button, Controller
 from win32api import GetSystemMetrics
 
 class Handler:
     def __init__(self):
-        self.m = Controller()
-        #self.k = PyKeyboard()
+        self.m = mouse.Controller()
+        self.k = keyboard.Controller()
         self.x_dim, self.y_dim = GetSystemMetrics(0),GetSystemMetrics(1)
         self.host = "127.0.0.1"
         self.port = 5901
@@ -15,10 +16,75 @@ class Handler:
         self.option_type = -1
         self.option_args = []
         self.num = -1
+        self.keyboard_laststate = 0
+        self.key_map = [
+            keyboard.KeyCode.from_char('`'),
+            keyboard.KeyCode.from_char('1'),
+            keyboard.KeyCode.from_char('2'),
+            keyboard.KeyCode.from_char('3'),
+            keyboard.KeyCode.from_char('4'),
+            keyboard.KeyCode.from_char('5'),
+            keyboard.KeyCode.from_char('6'),
+            keyboard.KeyCode.from_char('7'),
+            keyboard.KeyCode.from_char('8'),
+            keyboard.KeyCode.from_char('9'),
+            keyboard.KeyCode.from_char('0'),
+            keyboard.KeyCode.from_char('-'),
+            keyboard.KeyCode.from_char('='),
+            keyboard.Key.backspace,
+            keyboard.Key.tab,
+            keyboard.KeyCode.from_char('q'),
+            keyboard.KeyCode.from_char('w'),
+            keyboard.KeyCode.from_char('e'),
+            keyboard.KeyCode.from_char('r'),
+            keyboard.KeyCode.from_char('t'),
+            keyboard.KeyCode.from_char('y'),
+            keyboard.KeyCode.from_char('u'),
+            keyboard.KeyCode.from_char('i'),
+            keyboard.KeyCode.from_char('o'),
+            keyboard.KeyCode.from_char('p'),
+            keyboard.KeyCode.from_char('['),
+            keyboard.KeyCode.from_char(']'),
+            keyboard.KeyCode.from_char('\\'),
+            keyboard.Key.caps_lock,
+            keyboard.KeyCode.from_char('a'),
+            keyboard.KeyCode.from_char('s'),
+            keyboard.KeyCode.from_char('d'),
+            keyboard.KeyCode.from_char('f'),
+            keyboard.KeyCode.from_char('g'),
+            keyboard.KeyCode.from_char('h'),
+            keyboard.KeyCode.from_char('j'),
+            keyboard.KeyCode.from_char('k'),
+            keyboard.KeyCode.from_char('l'),
+            keyboard.KeyCode.from_char(';'),
+            keyboard.KeyCode.from_char('\''),
+            keyboard.Key.enter,
+            keyboard.Key.shift_l,
+            keyboard.KeyCode.from_char('z'),
+            keyboard.KeyCode.from_char('x'),
+            keyboard.KeyCode.from_char('c'),
+            keyboard.KeyCode.from_char('v'),
+            keyboard.KeyCode.from_char('b'),
+            keyboard.KeyCode.from_char('n'),
+            keyboard.KeyCode.from_char('m'),
+            keyboard.KeyCode.from_char(','),
+            keyboard.KeyCode.from_char('.'),
+            keyboard.KeyCode.from_char('/'),
+            keyboard.Key.shift_r,
+            keyboard.Key.ctrl_l,
+            keyboard.Key.alt_l,
+            keyboard.KeyCode.from_char(' '),
+            keyboard.Key.alt_r,
+            keyboard.Key.ctrl_r,
+            keyboard.Key.up,
+            keyboard.Key.down,
+            keyboard.Key.left,
+            keyboard.Key.right
+        ]
     
     def Exe(self, type, args = []):
     #1 x y代表drag(x,y)，这里x和y是0到1间的数,2代表左键按下, 
-    #3代表左键松开,4代表右键按下,5代表右键松开,6 ch表示某个键盘的键按下,7 ch表示松开
+    #3代表左键松开,4代表右键按下,5代表右键松开,6 state 表示 state 是键盘状态
         print("exe", type, args)
         cur_x, cur_y = self.m.position
         if type == 1:
@@ -27,19 +93,25 @@ class Handler:
             y = self.y_dim * y // 1000
             self.m.position=(x, y)
         elif type == 2:
-            self.m.press(Button.left)
+            self.m.press(mouse.Button.left)
         elif type == 3:
-            self.m.release(Button.left)
+            self.m.release(mouse.Button.left)
         elif type == 4:
-            self.m.press(Button.right)
+            self.m.press(mouse.Button.right)
         elif type == 5:
-            self.m.release(Button.right)
-            print(ch)
-            #self.k.press_key(chr(ch))
-        elif type == 7:
-            ch = args[0]
-            print(ch)
-            #self.k.release_key(chr(ch))
+            self.m.release(mouse.Button.right)
+        elif type == 6:
+            keyboard_curstate = args[0]
+            for i in range(0, 62):
+                if self.keyboard_laststate & ~keyboard_curstate & 1 << i:
+                    ch = self.key_map[i]
+                    print(ch)
+                    self.k.release(ch)
+                elif ~self.keyboard_laststate & keyboard_curstate & 1 << i:
+                    ch = self.key_map[i]
+                    print(ch)
+                    self.k.press(ch)
+            self.keyboard_laststate = keyboard_curstate
 
     def GetInt(self, x):
         print("GETEINT", x)

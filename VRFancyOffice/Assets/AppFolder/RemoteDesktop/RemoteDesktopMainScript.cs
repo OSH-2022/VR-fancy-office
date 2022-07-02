@@ -13,6 +13,7 @@ public class RemoteDesktopMainScript : MonoBehaviour
     public GameObject PortInputBox;
     public GameObject Arch;
     public GameObject NetworkToolkit;
+    public GameObject KeyPad;
     private string IP;
     private int port;
     private Vector3 InitializedPosition = new Vector3(-0.3f,1.5f,0.3f); //To be modified
@@ -29,6 +30,7 @@ public class RemoteDesktopMainScript : MonoBehaviour
         PortInputBox.SetActive(false);
         Arch.SetActive(false);
         NetworkToolkit.SetActive(false);
+        KeyPad.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,9 +38,15 @@ public class RemoteDesktopMainScript : MonoBehaviour
     {
         if(connected==1)
         {
+            int a;
             if(drag_msg!="") send(drag_msg);
             if(click_msg!="") send(click_msg);
             if(release_msg!="") send(release_msg);
+            List <bool> KeyState=GameObject.Find("GlobalScripts").GetComponent<GlobalVar>().KeyState;
+            ulong keyboard_msg = 0;
+            for (int i = 61; i >= 0; --i)
+                keyboard_msg = keyboard_msg << 1 | ( KeyState[i] ? 1ul : 0ul );
+            send("6 " + keyboard_msg.ToString() + " ");
             click_msg="";
             drag_msg="";
             release_msg="";
@@ -61,6 +69,7 @@ public class RemoteDesktopMainScript : MonoBehaviour
         Destroy(PortInputBox);
         NetworkToolkit.SetActive(true);
         Arch.SetActive(true);
+        KeyPad.SetActive(true);
     }
     private void send(string msg)
     {

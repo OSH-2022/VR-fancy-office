@@ -6,6 +6,7 @@ public class ScreenTouch : MonoBehaviour
 {
     public GameObject RemoteDesktopGameObject;
     public float LastExitTime = 0f;
+    public float LastEnterTime = 0f;
     public int exitted=1;
     public int exit_event=0;
     public int StartCounting=0;
@@ -32,6 +33,7 @@ public class ScreenTouch : MonoBehaviour
             StartCounting=0;
             return;
         }
+        LastEnterTime=Time.time;
         exitted=0;
         exit_event=0;
         StartCounting=0;
@@ -51,12 +53,12 @@ public class ScreenTouch : MonoBehaviour
     }
     void OnCollisionStay(Collision collisionInfo)
     {
-        /*
+        if(Time.time-LastEnterTime<1.5) return;
         ContactPoint contact = collisionInfo.contacts[0];
         Vector3 pos = transform.InverseTransformPoint(contact.point);
         double x=-pos.x+0.5;
         double y=-pos.y+0.5;
         string output=string.Format("({0},{1})",x,y);
-        RemoteDesktopGameObject.GetComponent<RemoteDesktopMainScript>().Move(x,y);*/
+        RemoteDesktopGameObject.GetComponent<RemoteDesktopMainScript>().Move(x,y);
     }
 }
