@@ -1015,6 +1015,8 @@ MonoBehaviour:
     type: 3}
   RemoteDesktopPrefab: {fileID: 4726973226663090458, guid: 183182577e6859646a38b3d1841d6ece,
     type: 3}
+  PlaneModel: {fileID: 982051847605402396, guid: c88948d41e94c53498c50a1d2d407cb0,
+    type: 3}
 --- !u!1 &1930659238234627571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3308,6 +3310,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4072539978298328358}
         m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.Samples
         m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3841408908557691870}
+        m_TargetAssemblyTypeName: MainMenuOptionProcess, Assembly-CSharp
+        m_MethodName: PlaneModelControl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -7,6 +7,7 @@ public class MainMenuOptionProcess : MonoBehaviour
     public GameObject MainMenu;
     public GameObject ObjImporterPrefab;
     public GameObject RemoteDesktopPrefab;
+    public GameObject PlaneModel;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,11 @@ public class MainMenuOptionProcess : MonoBehaviour
     public void RemoteDesktop()
     {
         Instantiate(RemoteDesktopPrefab);
+        Destroy(MainMenu);
+    }
+    public void PlaneModelControl()
+    {
+        Instantiate(PlaneModel);
         Destroy(MainMenu);
     }
 }
