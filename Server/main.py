@@ -123,5 +123,5 @@ while True:
                         mouse.Controller.press(mouse.Button.right)
                     i = 0
                     laststate = qword
-    print('Connection closed')
     client_socket.close()
+    print('Connection closed')
