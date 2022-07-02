@@ -4,9 +4,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 using TMPro;
 using System.Net.Sockets;
-using System.Runtime.InteropServices
+using System.Runtime.InteropServices;
 
 public class RemoteDesktopMainScript : MonoBehaviour
 {
@@ -22,11 +23,12 @@ public class RemoteDesktopMainScript : MonoBehaviour
     private string click_msg = string.Empty;
     private string drag_msg = string.Empty;
     private string release_msg = string.Empty;
-	private ulong keyboard_msg = 0;
+	private long keyboard_msg = 0;
+    private byte upos = 0;
 	[StructLayoutAttribute(LayoutKind.Explicit)]
 	private struct cUnion {
-		[FieldOffsetAttribute(0)] public ulong ull;
-		[FiledOffsetAttribute(0)] public double d;
+		[FieldOffsetAttribute(0)] public long ull;
+		[FieldOffsetAttribute(0)] public double d;
 	}
 	private cUnion xpos, ypos;
     public int connected=0;
@@ -49,10 +51,11 @@ public class RemoteDesktopMainScript : MonoBehaviour
             List <bool> KeyState=GameObject.Find("GlobalScripts").GetComponent<GlobalVar>().KeyState;
             for (int i = 0; i < 62; ++i)
 				if (KeyState[i])
-					keyboard_msg |= 1ul << i;
+					keyboard_msg |= 1l << i;
 				else
-					keyboard_msg &= -1ul << i;
+					keyboard_msg &= (-1l << i) - 1l;
 			send(xpos.ull, ypos.ull, keyboard_msg);
+            upos = 0;
         }
     }
     public void SetIP()
@@ -74,16 +77,21 @@ public class RemoteDesktopMainScript : MonoBehaviour
         Arch.SetActive(true);
         KeyPad.SetActive(true);
     }
-    private void send(ulong x, ulong y, ulong msg) {
-        byte[] bytes = new byte[24]{ 
-			x >> 56, x >> 48 & 255, x >> 40 & 255, x >> 32 & 255, x >> 24 & 255, x >> 16 & 255, x >> 8 & 255, x & 255,
-			y >> 56, y >> 48 & 255, y >> 40 & 255, y >> 32 & 255, y >> 24 & 255, y >> 16 & 255, y >> 8 & 255, y & 255,
-			msg >> 56, msg >> 48 & 255, msg >> 40 & 255, msg >> 32 & 255, msg >> 24 & 255, msg >> 16 & 255, msg >> 8 & 255, msg & 255 };
+    void recvFile(string fileIP, int filePort, string srcPath, string dstPath) {
+        Socket fileSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        fileSocket.Connect(fileIP, filePort);
+        fileSocket.Send(Encoding.Unicode.GetBytes(srcPath));
+    }
+    private void send(long x, long y, long msg) {
+        byte[] bytes = new byte[25]{ 
+			upos, (byte)(x >> 56), (byte)(x >> 48), (byte)(x >> 40), (byte)(x >> 32), (byte)(x >> 24), (byte)(x >> 16), (byte)(x >> 8), (byte)(x),
+			(byte)(y >> 56), (byte)(y >> 48), (byte)(y >> 40), (byte)(y >> 32), (byte)(y >> 24), (byte)(y >> 16), (byte)(y >> 8), (byte)(y),
+			(byte)(msg >> 56), (byte)(msg >> 48), (byte)(msg >> 40), (byte)(msg >> 32), (byte)(msg >> 24), (byte)(msg >> 16), (byte)(msg >> 8), (byte)(msg) };
         socket.Send(bytes);
     }
-    public void LeftButtonDown() { keyboard_msg |= 1ul << 62; }
-    public void LeftButtonUp() { keyboard_msg &= -1ul << 62; }
-	public void RightButtonDown() { keyboard_msg |= 1ul << 63; }
-	public void RightButtonUp() { keyboard_msg &= -1ul << 63; }
-    public void Move(double x, double y) { xpos.d = x; ypos.d = y; }
+    public void LeftButtonDown() { keyboard_msg |= 0x4000000000000000l; }
+    public void LeftButtonUp() { keyboard_msg &= -0x4000000000000001l; }
+	public void RightButtonDown() { keyboard_msg |= -0x8000000000000000l; }
+	public void RightButtonUp() { keyboard_msg &= 0x7fffffffffffffffl; }
+    public void Move(double x, double y) { xpos.d = x; ypos.d = y; upos = 1; }
 }

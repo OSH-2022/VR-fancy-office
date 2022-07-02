@@ -1,11 +1,10 @@
 import socket
-import time
 from pynput import mouse, keyboard
 from win32api import GetSystemMetrics
 import ctypes as ct
 
 class cUnion(ct.Union):
-    _fields = [('ull', ct.c_ulonglong), ('d', ct.c_double)]
+    _fields_ = [('ull', ct.c_ulonglong), ('d', ct.c_double)]
 
 KEYMAP = [
     keyboard.KeyCode.from_char('`'),
@@ -88,40 +87,50 @@ while True:
     while True:
         try:
             data = client_socket.recv(1024)
+            if len(data) == 0:
+                break
         except:
             break
         else:
+            upos = 0
             for ch in data:
-                qword = qword << 8 | ch
+                qword = qword << 8 | (ch & 255)
                 i += 1
-                if i == 8:
+                if i == 1:
+                    qword = 0
+                    upos = ch
+                if i == 9:
                     x.ull = qword
                     qword = 0
-                elif i == 16:
+                elif i == 17:
                     y.ull = qword
                     qword = 0
-                    mouse.Conroller().position(int(x.d * GetSystemMetrics(0) + 0.5), int(y.d * GetSystemMetrics(1) + 0.5))
-                elif i == 24:
-                    for i in range(0, 62):
-                        if laststate & ~qword & 1 << i:
-                            print('Released key #{}'.format(i))
-                            keyboard.Controller().release(KEYMAP[i])
-                        elif ~laststate & qword & 1 << i:
-                            print('Pressed key #{}'.format(i))
-                            keyboard.Controller().press(KEYMAP[i])
-                    if laststate & ~qword & 1 << 62:
+                    if upos:
+                        mouse.Controller().position = (int(x.d * GetSystemMetrics(0) + 0.5), int(y.d * GetSystemMetrics(1) + 0.5))
+                elif i == 25:
+                    for j in range(0, 62):
+                        if laststate & ~qword & 1 << j:
+                            print('Released key #{}'.format(j))
+                            keyboard.Controller().release(KEYMAP[j])
+                        elif ~laststate & qword & 1 << j:
+                            print('Pressed key #{}'.format(j))
+                            keyboard.Controller().press(KEYMAP[j])
+                    if (laststate ^ qword) & 0x3fffffffffffffff:
+                        print(qword & 0x3fffffffffffffff)
+                    if laststate & ~qword & 0x4000000000000000:
                         print('Released left button')
                         mouse.Controller().release(mouse.Button.left)
-                    elif ~laststate & qword & 1 << 62:
+                    elif ~laststate & qword & 0x4000000000000000:
                         print('Pressed left button')
                         mouse.Controller().press(mouse.Button.left)
-                    if laststate & ~qword & 1 << 63:
+                    if laststate & ~qword & 0x8000000000000000:
                         print('Released right button')
-                        mouse.Controller.release(mouse.Button.right)
-                    elif ~laststate & qword & 1 << 63:
+                        mouse.Controller().release(mouse.Button.right)
+                    elif ~laststate & qword & 0x8000000000000000:
                         print('Pressed right button')
-                        mouse.Controller.press(mouse.Button.right)
+                        mouse.Controller().press(mouse.Button.right)
                     i = 0
                     laststate = qword
+                    qword = 0
     client_socket.close()
     print('Connection closed')
