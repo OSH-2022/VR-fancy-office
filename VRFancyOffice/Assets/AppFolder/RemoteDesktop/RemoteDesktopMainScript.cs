@@ -19,7 +19,9 @@ public class RemoteDesktopMainScript : MonoBehaviour
     private string IP;
     private int port;
     private Vector3 InitializedPosition = new Vector3(-0.3f,1.5f,0.3f); //To be modified
-    private Socket socket;
+    private Socket socket, fileSocket;
+	private byte[] fileRecvBuf = new byte[1024];
+	private uint fileRecvBufIt = 0, fileRecvBufLen = 0;
     private string click_msg = string.Empty;
     private string drag_msg = string.Empty;
     private string release_msg = string.Empty;
@@ -77,11 +79,36 @@ public class RemoteDesktopMainScript : MonoBehaviour
         Arch.SetActive(true);
         KeyPad.SetActive(true);
     }
-    void recvFile(string fileIP, int filePort, string srcPath, string dstPath) {
-        Socket fileSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+    private void recvFile(string fileIP, int filePort, string srcPath, string dstPath) {
+        fileSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         fileSocket.Connect(fileIP, filePort);
-        fileSocket.Send(Encoding.Unicode.GetBytes(srcPath));
+		byte[] srcPathBytes = Encoding.UTF8.GetBytes(srcPath);
+		byte[] srcPathBytesLength = new byte[4] { (byte)(srcPathBytes.Length >> 24), (byte)(srcPathBytes.Length >> 16), (byte)(srcPathBytes.Length >> 8), (byte)srcPathBytes };
+		fileSocket.Send(srcPathBytesLength);
+        fileSocket.Send(srcPathBytes);
+		fileRecvBufIt = 0, fileRecvBufLen = 0;
+		int len = getFileByte();
+		byte[] fileName = new byte[len];
+		for (int i = 0; i < len; ++i)
+			fileName[i] = getFileByte();
+		dstFileName = dstPath + Encoding.Unicode.GetString(fileName);
+		FileStream fs = new FileStream(dstFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+		len = 0;
+		for (int i = 0; i < 4; ++i)
+			len = len << 8 | getFileByte();
+		while (len--)
+			fs.Write((byte)getFileByte());
+		fs.Close();
+		fileSocket.Close();
     }
+	private int getFileByte() {
+		if (fileRecvBufIt >= fileRecvBufLen) {
+			fileRecvBufIt = 0, fileRecvBufLen = fileSocket.Receive(fileRecvBuf);
+			if (fileRecvBufLen == 0)
+				return -1;
+		}
+		return ((int)fileRecvBuf[fileRecvBufIt++]) & 255;
+	}
     private void send(long x, long y, long msg) {
         byte[] bytes = new byte[25]{ 
 			upos, (byte)(x >> 56), (byte)(x >> 48), (byte)(x >> 40), (byte)(x >> 32), (byte)(x >> 24), (byte)(x >> 16), (byte)(x >> 8), (byte)(x),
