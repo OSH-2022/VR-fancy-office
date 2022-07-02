@@ -1,6 +1,23 @@
 import socket
 import os
 
+def sendfile(client_socket, fileName):
+    splitFileName = os.path.split(fileName)[1].encode('utf-8')
+    if os.path.isdir(fileName):
+        client_socket.send(bytes([ 1, len(splitFileName) ]))
+        client_socket.send(splitFileName)
+        dirs = os.listdir(fileName)
+        for file in dirs:
+            sendfile(client_socket, os.path.join(fileName, file))
+        client_socket.send(bytes([ 3 ]))
+    else:
+        with open(fileName, 'rb') as f:
+            client_socket.send(bytes([ 2, len(splitFileName) ]))
+            client_socket.send(splitFileName)
+            context = f.read()
+            client_socket.send(bytes([ len(context) >> 24, len(context) >> 16 & 255, len(context) >> 8 & 255, len(context) & 255 ]))
+            client_socket.send(context)
+
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind(('', 5902))
 server_socket.listen(1)
@@ -13,15 +30,8 @@ while True:
     fileNameLen = client_socket.recv(4)
     fileNameLen = (int(fileNameLen[0]) & 255) << 24 | (int(fileNameLen[1]) & 255) << 16 | (int(fileNameLen[2]) & 255) << 8 | (int(fileNameLen[3]) & 255)
     fileName = client_socket.recv(fileNameLen).decode('utf-8')
-    splitFileName = os.path.split(fileName).encode('utf-8')
-    client_socket.send(bytes([ splitFileName.length() ]))
-    client_socket.send(splitFileName)
     if os.path.exists(fileName):
-        with open(fileName, 'rb') as f:
-            context = read()
-            client_socket.send(bytes([ len(context) >> 24, len(context) >> 16 & 255, len(context) >> 8 & 255, len(context) & 255 ]))
-            client_socket.send(context)
-    else:
-        client_socket.send(bytes([ 0, 0, 0, 0 ]))
+        sendfile(client_socket, fileName)
+    client_socket.send(bytes([ 3 ]))
     client_socket.close()
     print('Connection closed')
