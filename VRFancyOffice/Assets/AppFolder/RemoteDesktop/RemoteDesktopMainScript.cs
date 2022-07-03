@@ -19,7 +19,9 @@ public class RemoteDesktopMainScript : MonoBehaviour
     private string IP;
     private int port;
     private Vector3 InitializedPosition = new Vector3(-0.3f,1.5f,0.3f); //To be modified
-    private Socket socket;
+    private Socket socket, fileSocket;
+	private byte[] fileRecvBuf = new byte[1024];
+	private uint fileRecvBufIt = 0, fileRecvBufLen = 0;
     private string click_msg = string.Empty;
     private string drag_msg = string.Empty;
     private string release_msg = string.Empty;
