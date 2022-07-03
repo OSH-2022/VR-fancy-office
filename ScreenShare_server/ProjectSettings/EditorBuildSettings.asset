@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Demo_NetworkingMain.unity
+    guid: 0792f2f29ba4f494db636e2717b7fdaf
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Demo_FMNetworkStreaming/Demo_FMNetworkPCStream.unity
+    guid: 600d50b8834cd4020ac9499f5ddaa9b6
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMNetwork/Scenes/Demo_FMNetworkBasic.unity
+    guid: cc716520b8c7e4928866f9fd79a8c868
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Demo_FMNetworkStreaming/Demo_FMNetworkStreaming.unity
+    guid: de8622cb70cad4000b5f98fee31efb8a
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Demo_WebSocketStreaming/Demo_WebSocketStreaming.unity
+    guid: 5f18f6cf81e204194bff6ef9aab6cc51
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMWebSocket/Scenes/Demo_WebSocketNetwork.unity
+    guid: 62daf1f719c324c8cbe24ae90ad07d45
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Archived/Demo_TCPNetworkActions(Old)/Demo_TCPNetworkActionMain(old).unity
+    guid: c7a249d854d47460d8472c626c768eb3
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Archived/Demo_TCPNetworkActions(Old)/Demo_TCPNetworkActionServer(old).unity
+    guid: 6cadb8e253b4e4bab9b6e082ff1386f3
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Archived/Demo_TCPNetworkActions(Old)/Demo_TCPNetworkActionClient(old).unity
+    guid: 565051d5298b44541bb9acc3049cd4c1
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Demo_EnergySaving_MobileWebcam.unity
+    guid: 99415d7f276484eeab9aca5c38e9b73b
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Demo_Gigapixel_Panorama_360Viewer.unity
+    guid: 9a31c783de9404cbcaa1f20d84b6520b
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Archived/Demo_TCPGameViewStreaming(Old)/Demo_TCPGameViewStreamingMain(old).unity
+    guid: 936e009d9db754d81a83ca816e749da0
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Archived/Demo_TCPGameViewStreaming(Old)/Demo_TCPGameViewStreamingServer(old).unity
+    guid: 53c275ce58c104a6a80e0f8dc8f648bf
+  - enabled: 0
+    path: Assets/FMETP_STREAM/FMCore/Scenes/Networking/Archived/Demo_TCPGameViewStreaming(Old)/Demo_TCPGameViewStreamingClient(old).unity
+    guid: 5a88711b7ac1e4d1cb98a3b32b334120
+  - enabled: 1
+    path: Assets/Scenes/Server.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  m_configObjects: {}

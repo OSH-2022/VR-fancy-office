@@ -1,0 +1,482 @@
+<3DSaaS>
+<item name="" Index="1" parentIndex="-1" itemType="2">
+<property value="0.1M" pathType="1" filePath="" fileName="S1" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S1</attribute>
+<attribute name="index" attributeType="0" modifiable="0">1</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.549019607843137,0.556862745098039,0.556862745098039</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.1M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">18.2ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">53.39cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="2" parentIndex="-1" itemType="2">
+<property value="0.3M" pathType="1" filePath="" fileName="S2" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S2</attribute>
+<attribute name="index" attributeType="0" modifiable="0">2</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,0.501960784313725,1</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.3M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">118.23ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">165.98cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="3" parentIndex="-1" itemType="2">
+<property value="0.5M" pathType="1" filePath="" fileName="S3" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S3</attribute>
+<attribute name="index" attributeType="0" modifiable="0">3</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.501960784313725,0,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.5M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">234.12ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">266.04cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="4" parentIndex="-1" itemType="2">
+<property value="0.5M" pathType="1" filePath="" fileName="S4" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S4</attribute>
+<attribute name="index" attributeType="0" modifiable="0">4</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0,1,1</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.5M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">152.99ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">185.01cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="5" parentIndex="-1" itemType="2">
+<property value="0.2M" pathType="1" filePath="" fileName="S5" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S5</attribute>
+<attribute name="index" attributeType="0" modifiable="0">5</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.501960784313725,0.501960784313725,1</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.2M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">88.4ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">139.7cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="6" parentIndex="-1" itemType="2">
+<property value="0.2M" pathType="1" filePath="" fileName="S6" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S6</attribute>
+<attribute name="index" attributeType="0" modifiable="0">6</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,1,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.2M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">118.32ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">154.65cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="7" parentIndex="-1" itemType="2">
+<property value="0.4M" pathType="1" filePath="" fileName="S7" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S7</attribute>
+<attribute name="index" attributeType="0" modifiable="0">7</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0,0.501960784313725,0.752941176470588</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.4M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">235.26ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">221.39cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">1</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="8" parentIndex="-1" itemType="2">
+<property value="0.4M" pathType="1" filePath="" fileName="S8" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">S8</attribute>
+<attribute name="index" attributeType="0" modifiable="0">8</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,0,0.498039215686275</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.4M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">91.81ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">140.38cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="9" parentIndex="-1" itemType="2">
+<property value="0.3M" pathType="1" filePath="" fileName="胆囊" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="2" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">胆囊</attribute>
+<attribute name="index" attributeType="0" modifiable="0">9</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0,0.666666666666667,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.3M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">15.75ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">39.13cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="10" parentIndex="-1" itemType="2">
+<property value="0.2M" pathType="1" filePath="" fileName="胆总管" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">胆总管</attribute>
+<attribute name="index" attributeType="0" modifiable="0">10</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0,0.6666666667,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.2M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">0.58ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">6.39cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="11" parentIndex="-1" itemType="2">
+<property value="0.8M" pathType="1" filePath="" fileName="低密度影" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">低密度影</attribute>
+<attribute name="index" attributeType="0" modifiable="0">11</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,1,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.8M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">10.31ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">28.18cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="12" parentIndex="-1" itemType="2">
+<property value="9.1M" pathType="1" filePath="" fileName="动脉血管" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">动脉血管</attribute>
+<attribute name="value" attributeType="2" modifiable="0">9.1M</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="index" attributeType="0" modifiable="0">12</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,0,0</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">26.2ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">529.13cm2</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="13" parentIndex="-1" itemType="2">
+<property value="0.4M" pathType="1" filePath="" fileName="肝静脉血管" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">肝静脉血管</attribute>
+<attribute name="index" attributeType="0" modifiable="0">13</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0,0,1</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.4M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">4.42ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">31.86cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="14" parentIndex="-1" itemType="2">
+<property value="2M" pathType="1" filePath="" fileName="肝脏" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">0</attribute>
+<attribute name="name" attributeType="3" modifiable="1">肝脏</attribute>
+<attribute name="value" attributeType="3" modifiable="1">2M</attribute>
+<attribute name="modify" attributeType="3" modifiable="1">1</attribute>
+<attribute name="index" attributeType="0" modifiable="0">14</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.556862745098039,0.556862745098039,0.556862745098039</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">1057.37ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">765.91cm2</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="15" parentIndex="-1" itemType="2">
+<property value="1.6M" pathType="1" filePath="" fileName="淋巴结" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">淋巴结</attribute>
+<attribute name="value" attributeType="2" modifiable="0">1.6M</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="index" attributeType="0" modifiable="0">15</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,0.666666666666667,1</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">12.63ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">103.78cm2</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="16" parentIndex="-1" itemType="2">
+<property value="0.1M" pathType="1" filePath="" fileName="略低密度影" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">略低密度影</attribute>
+<attribute name="index" attributeType="0" modifiable="0">16</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,0.5019607843,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.1M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">1.23ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">5.74cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="17" parentIndex="-1" itemType="2">
+<property value="2.3M" pathType="1" filePath="" fileName="门静脉血管" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">门静脉血管</attribute>
+<attribute name="value" attributeType="2" modifiable="0">2.3M</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="index" attributeType="0" modifiable="0">17</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.501960784313725,0.501960784313725,1</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">46.02ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">282.15cm2</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="18" parentIndex="-1" itemType="2">
+<property value="0.6M" pathType="1" filePath="" fileName="脾脏" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.8</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">脾脏</attribute>
+<attribute name="index" attributeType="0" modifiable="0">18</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.501960784313725,0.501960784313725,0.752941176470588</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.6M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">706.45ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">463.45cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="19" parentIndex="-1" itemType="2">
+<property value="2.4M" pathType="1" filePath="" fileName="肾脏" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.8</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">肾脏</attribute>
+<attribute name="value" attributeType="2" modifiable="0">2.4M</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="index" attributeType="0" modifiable="0">19</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.501960784313725,0,0.501960784313725</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">176.46ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">480.1cm2</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="20" parentIndex="-1" itemType="2">
+<property value="0M" pathType="1" filePath="" fileName="肾脏低密度" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.8</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">肾脏低密度</attribute>
+<attribute name="index" attributeType="0" modifiable="0">20</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.5019607843,0.2509803922,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">0.28ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">3.78cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="21" parentIndex="-1" itemType="2">
+<property value="0.3M" pathType="1" filePath="" fileName="下腔静脉" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">下腔静脉</attribute>
+<attribute name="index" attributeType="0" modifiable="0">21</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0,0,1</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.3M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">30.59ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">102.28cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="22" parentIndex="-1" itemType="2">
+<property value="0M" pathType="1" filePath="" fileName="血管影" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">血管影</attribute>
+<attribute name="index" attributeType="0" modifiable="0">22</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.3333333333,1,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">0.34ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">3.85cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="23" parentIndex="-1" itemType="2">
+<property value="1M" pathType="1" filePath="" fileName="胰腺" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">0.4</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">胰腺</attribute>
+<attribute name="value" attributeType="2" modifiable="0">1M</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="index" attributeType="0" modifiable="0">23</attribute>
+<attribute name="color" attributeType="5" modifiable="1">1,0.7921568627,0.5803921569</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">33.61ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">101.95cm2</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+<item name="" Index="24" parentIndex="-1" itemType="2">
+<property value="0.2M" pathType="1" filePath="" fileName="迂曲血管影" fileType="stl" readMethod="SurfaceData"/>
+<attributeList attributeCount="15">
+<attribute name="node_type" attributeType="0" modifiable="0">2</attribute>
+<attribute name="node_modified" attributeType="3" modifiable="0">true</attribute>
+<attribute name="check" attributeType="1" modifiable="1">1</attribute>
+<attribute name="opacity" attributeType="3" modifiable="1">1</attribute>
+<attribute name="visible" attributeType="1" modifiable="1">1</attribute>
+<attribute name="name" attributeType="3" modifiable="1">迂曲血管影</attribute>
+<attribute name="index" attributeType="0" modifiable="0">24</attribute>
+<attribute name="color" attributeType="5" modifiable="1">0.3333333333,1,0</attribute>
+<attribute name="value" attributeType="2" modifiable="0">0.2M</attribute>
+<attribute name="original_type" attributeType="3" modifiable="1">stl</attribute>
+<attribute name="volume" attributeType="2" modifiable="0">4.07ml</attribute>
+<attribute name="surface" attributeType="2" modifiable="0">31.85cm2</attribute>
+<attribute name="modify" attributeType="1" modifiable="0">0</attribute>
+<attribute name="selected" attributeType="1" modifiable="0">0</attribute>
+<attribute name="type_selected" attributeType="3" modifiable="0">1</attribute>
+</attributeList>
+</item>
+</3DSaaS>
