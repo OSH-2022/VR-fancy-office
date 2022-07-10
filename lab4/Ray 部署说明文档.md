@@ -1,5 +1,7 @@
 # Ray 部署说明文档
 
+本文发布在 [](https://zhuanlan.zhihu.com/p/539972688)
+
 ## 基于 Docker 的部署
 
 ### 跨平台基于桥接网络部署
